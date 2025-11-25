@@ -1,0 +1,16 @@
+{
+  "placeholderImages": [
+    {
+      "id": "project-snake-game",
+      "description": "Screenshot of a snake game on a computer screen.",
+      "imageUrl": "https://images.unsplash.com/photo-1666863402610-6f2965367957?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxnYW1lJTIwY29kZXxlbnwwfHx8fDE3NjM5MjgzNjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "game code"
+    },
+    {
+      "id": "project-portfolio",
+      "description": "Screenshot of a personal developer portfolio website.",
+      "imageUrl": "https://images.unsplash.com/photo-1661956602116-aa6865609028?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWJzaXRlJTIwcG9ydGZvbGlvfGVufDB8fHx8MTc2NDAxNzY3OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "website portfolio"
+    }
+  ]
+}
