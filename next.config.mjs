@@ -13,8 +13,8 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'loremflickr.com',
-      }
+        hostname: 'images.unsplash.com', 
+      },
     ],
   },
 };

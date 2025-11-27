@@ -20,7 +20,7 @@ const About = () => {
               <div className="relative w-[300px] h-[300px] lg:w-[400px] lg:h-[400px]">
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 blur-2xl"></div>
                  <Image
-                   src="https://loremflickr.com/400/400/code,programming"
+                   src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=8"
                    alt="Programación y Desarrollo"
                    width={400}
                    height={400}
