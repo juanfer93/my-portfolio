@@ -11,7 +11,7 @@ const techCategories = [
   {
     title: 'Frontend',
     icon: <Palette className="h-8 w-8 text-primary" />,
-    skills: ['React', 'Next.js', 'Tailwind CSS', 'HTML5 & CSS3'],
+    skills: ['React','React Native', 'Next.js', 'Tailwind CSS', 'Bootstrap', 'HTML5 & CSS3'],
   },
   {
     title: 'Backend',
