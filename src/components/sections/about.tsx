@@ -20,12 +20,12 @@ const About = () => {
               <div className="relative w-[300px] h-[300px] lg:w-[400px] lg:h-[400px]">
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 blur-2xl"></div>
                  <Image
-                   src="https://picsum.photos/seed/profilepic/400/400"
-                   alt="Juan Fernando Pacheco Ibañez"
+                   src="https://loremflickr.com/400/400/code,programming"
+                   alt="Programación y Desarrollo"
                    width={400}
                    height={400}
                    className="relative rounded-full object-cover border-4 border-background"
-                   data-ai-hint="man portrait"
+                   data-ai-hint="programming code abstract"
                  />
               </div>
             </div>
