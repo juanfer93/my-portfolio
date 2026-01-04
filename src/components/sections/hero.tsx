@@ -19,7 +19,7 @@ const Hero = () => {
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-accent to-primary">especialista en automatizacion IA y desarrollo con IA</span>
           </h1>
           <p className="mt-6 max-w-2xl mx-auto text-lg text-foreground/80 sm:text-xl">
-            Hola, soy Juan Fernando Pacheco Ibañez. Transformo ideas complejas en aplicaciones web escalables y flujos de trabajo automatizados.
+            Hola, soy Juan Fernando Pacheco Ibañez. Transformo ideas complejas en aplicaciones escalables, flujos de trabajo automatizados y desarrollo con IA.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
             <Button asChild size="lg" className="rounded-full">
