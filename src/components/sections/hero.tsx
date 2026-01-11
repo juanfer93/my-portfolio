@@ -12,6 +12,7 @@ const Hero = () => {
           <div className="flex justify-center gap-2 mb-6">
             <Badge variant="outline" className="border-primary/50 text-primary py-1 px-3 rounded-full">Backend</Badge>
             <Badge variant="outline" className="border-primary/50 text-primary py-1 px-3 rounded-full">Frontend</Badge>
+            <Badge variant="outline" className="border-primary/50 text-primary py-1 px-3 rounded-full">AI Developer</Badge>
             <Badge variant="outline" className="border-primary/50 text-primary py-1 px-3 rounded-full">AI Automation</Badge>
           </div>
           <h1 className="font-headline text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
@@ -28,10 +29,10 @@ const Hero = () => {
           </div>
         </div>
       </div>
-       <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
-         <Link href="#about" aria-label="Scroll to about section">
-            <ArrowDown className="h-8 w-8 text-foreground/50 animate-bounce" />
-          </Link>
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
+        <Link href="#about" aria-label="Scroll to about section">
+          <ArrowDown className="h-8 w-8 text-foreground/50 animate-bounce" />
+        </Link>
       </div>
     </section>
   );

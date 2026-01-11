@@ -11,7 +11,7 @@ const techCategories = [
   {
     title: 'Frontend',
     icon: <Palette className="h-8 w-8 text-primary" />,
-    skills: ['React','React Native', 'Next.js', 'Tailwind CSS', 'Bootstrap', 'HTML5 & CSS3'],
+    skills: ['React', 'React Native', 'Next.js', 'Tailwind CSS', 'Bootstrap', 'HTML5 & CSS3'],
   },
   {
     title: 'Backend',
@@ -19,9 +19,9 @@ const techCategories = [
     skills: ['Node.js', 'NestJs', 'Flask', 'Django', 'Integración de APIs', 'SQL'],
   },
   {
-    title: 'AI & Automatización',
+    title: 'AI Engineering & Tools',
     icon: <BrainCircuit className="h-8 w-8 text-primary" />,
-    skills: ['N8n', 'GoHighLevel', 'Integración de LLMs', 'Vibe coding'],
+    skills: ['Antigravity (Agentic)', 'Cursor & Codex', 'Stitch AI (Design)', 'N8n', 'GoHighLevel', 'Integración de LLMs', 'MCP'],
   },
 ];
 
