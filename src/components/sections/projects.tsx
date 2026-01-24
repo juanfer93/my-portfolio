@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Github } from 'lucide-react';
+import { Github, ExternalLink } from 'lucide-react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
@@ -11,9 +11,16 @@ const projectsData = [
   {
     title: 'Snake Game',
     description: 'Una recreación moderna del clásico juego con lógica optimizada en JavaScript y React.',
-    stack: ['HTML5', 'CSS3', 'JS', 'React'],
+    stack: ['React', 'NextJs', 'TypeScript', 'TailwindCSS'],
     link: 'https://github.com/juanfer93/snake-game',
     image: PlaceHolderImages.find(img => img.id === 'project-snake-game'),
+  },
+  {
+    title: 'King Electric Home',
+    description: 'Sitio web profesional para servicios eléctricos residenciales y comerciales.',
+    stack: ['React', 'NextJs', 'TypeScript', 'TailwindCSS'],
+    link: 'https://www.kingelectrichome.com/',
+    image: PlaceHolderImages.find(img => img.id === 'project-king-electric'),
   },
 ];
 
@@ -57,8 +64,17 @@ const Projects = () => {
                     </div>
                     <Button asChild variant="outline" className="w-full sm:w-auto rounded-full">
                       <Link href={project.link} target="_blank" rel="noopener noreferrer">
-                        <Github className="mr-2 h-4 w-4" />
-                        Ver en GitHub
+                        {project.link.includes('github.com') ? (
+                          <>
+                            <Github className="mr-2 h-4 w-4" />
+                            Ver en GitHub
+                          </>
+                        ) : (
+                          <>
+                            <ExternalLink className="mr-2 h-4 w-4" />
+                            Visitar Sitio
+                          </>
+                        )}
                       </Link>
                     </Button>
                   </CardFooter>
