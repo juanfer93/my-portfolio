@@ -35,7 +35,7 @@ const Projects = () => {
               Una selección de mis trabajos que demuestra mis habilidades y mi pasión por el desarrollo.
             </p>
           </div>
-          <div className="mt-12 max-w-xl mx-auto">
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {projectsData.map((project) => (
               <Card key={project.title} className="flex flex-col overflow-hidden bg-card/50 border-border/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-2">
                 <CardHeader className="p-0">
