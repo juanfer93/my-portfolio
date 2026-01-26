@@ -13,7 +13,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { PlaceHolderImages } from '../../lib/placeholder-images';
 import AnimatedSection from '../animated-section';
 
-// Datos de las diapositivas de automatización
+// Datos de las diapositivas de automatización - RUTAS CORREGIDAS
 const automationSlides = [
   {
     image: '/projects/ghl-automation/fb-messenger-1.png',
@@ -36,7 +36,7 @@ const automationSlides = [
     description: 'Lógica de cierre que determina cuándo detener el seguimiento automático basándose en la interacción del cliente o el límite de intentos.'
   },
   {
-    image: '/projects/ghl-automation/telefono-captured.png',
+    image: '/projects/ghl-automation/telefono-capturado.png', // Corregido según estructura de archivos
     title: 'Detección Automática de Leads',
     description: 'Workflow que identifica automáticamente cuando se captura un nuevo teléfono o lead, este workflow al identificar el nuevo lead retira el contacto del seguimiento cada 2 horas.'
   },
@@ -100,7 +100,6 @@ const Projects = () => {
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {projectsData.map((project) => (
               <Card key={project.title} className="flex flex-col overflow-hidden bg-card/50 border-border/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-2 h-full">
-
                 {project.hasCarousel && project.carouselSlides ? (
                   <div className="flex flex-col h-full">
                     <CardHeader className="p-0">
@@ -127,10 +126,8 @@ const Projects = () => {
                                       </div>
                                     </div>
                                   </div>
-
                                   <div className="text-center space-y-3 px-1">
                                     <h4 className="font-semibold text-lg leading-tight">{slide.title}</h4>
-
                                     <Button
                                       variant="secondary"
                                       size="sm"
@@ -149,7 +146,6 @@ const Projects = () => {
                         </Carousel>
                       </div>
                     </CardHeader>
-
                     <div className="p-6 pt-2 mt-auto">
                       <CardContent className="p-0 pt-2 pb-4">
                         <p className="text-foreground/80 text-sm">{project.description}</p>
@@ -212,54 +208,56 @@ const Projects = () => {
       </AnimatedSection>
 
       <Dialog open={!!selectedImage} onOpenChange={(open) => !open && setSelectedImage(null)}>
-        <DialogContent className="max-w-5xl w-[95vw] p-0 overflow-hidden bg-card border-border shadow-2xl transition-all duration-300">
-          <AnimatePresence>
+        {/* Eliminamos el overflow-hidden del DialogContent para permitir scroll si es necesario */}
+        <DialogContent className="max-w-5xl w-[95vw] p-0 bg-card border-border shadow-2xl overflow-hidden">
+          <AnimatePresence mode="wait">
             {selectedImage && (
               <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="flex flex-col lg:flex-row h-full max-h-[90vh]"
+                key={selectedImage.image}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="flex flex-col lg:flex-row min-h-[50vh] max-h-[90vh]"
               >
-                {/* Contenedor de Imagen con animación de escala */}
-                <div className="relative w-full lg:w-2/3 h-[40vh] lg:h-auto bg-muted/30 flex items-center justify-center p-4 overflow-hidden">
+                {/* Contenedor de Imagen */}
+                <div className="relative w-full lg:w-2/3 min-h-[300px] lg:h-auto bg-muted/30 flex items-center justify-center p-6">
                   <motion.div 
-                    initial={{ opacity: 0, scale: 0.9 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    className="relative w-full h-full min-h-[300px]"
+                    transition={{ duration: 0.4 }}
+                    className="relative w-full h-full"
                   >
                     <Image
                       src={selectedImage.image}
                       alt={selectedImage.title}
                       fill
-                      className="object-contain drop-shadow-2xl"
+                      className="object-contain drop-shadow-xl"
                       unoptimized={true}
                       priority
                     />
                   </motion.div>
                 </div>
 
-                {/* Panel lateral con información y entrada suave */}
-                <div className="w-full lg:w-1/3 p-6 lg:p-10 flex flex-col bg-background/60 backdrop-blur-xl border-l border-border/50">
+                {/* Panel lateral con scroll independiente para evitar que se corte el texto */}
+                <div className="w-full lg:w-1/3 p-6 lg:p-10 flex flex-col bg-background/60 backdrop-blur-xl border-t lg:border-t-0 lg:border-l border-border/50 overflow-y-auto">
                   <motion.div
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.2, duration: 0.5 }}
+                    transition={{ delay: 0.1, duration: 0.4 }}
                     className="flex flex-col h-full"
                   >
                     <DialogHeader className="mb-6">
-                      <DialogTitle className="text-2xl md:text-3xl font-bold leading-tight bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent">
+                      <DialogTitle className="text-xl md:text-2xl font-bold leading-tight bg-gradient-to-br from-primary to-primary/70 bg-clip-text text-transparent">
                         {selectedImage.title}
                       </DialogTitle>
                     </DialogHeader>
 
                     <div className="flex-grow">
-                      <div className="prose dark:prose-invert text-sm md:text-base leading-relaxed text-foreground/90">
-                        <p>{selectedImage.description}</p>
+                      <div className="text-sm md:text-base leading-relaxed text-foreground/90 mb-6">
+                        {selectedImage.description}
                       </div>
 
-                      <div className="bg-primary/5 p-5 rounded-2xl border border-primary/10 mt-8 space-y-3">
+                      <div className="bg-primary/5 p-5 rounded-2xl border border-primary/10 space-y-3">
                         <h5 className="font-semibold text-sm flex items-center gap-2 text-primary">
                           <span className="relative flex h-2 w-2">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -273,15 +271,6 @@ const Projects = () => {
                       </div>
                     </div>
 
-                    <div className="mt-8 pt-6 border-t border-border flex justify-end">
-                      <Button 
-                        variant="ghost" 
-                        onClick={() => setSelectedImage(null)}
-                        className="rounded-full hover:bg-primary/10 transition-colors"
-                      >
-                        Cerrar
-                      </Button>
-                    </div>
                   </motion.div>
                 </div>
               </motion.div>
