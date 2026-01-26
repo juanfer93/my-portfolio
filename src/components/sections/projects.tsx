@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Github, ExternalLink, Maximize2, Eye } from 'lucide-react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
@@ -35,7 +36,7 @@ const automationSlides = [
     description: 'Lógica de cierre que determina cuándo detener el seguimiento automático basándose en la interacción del cliente o el límite de intentos.'
   },
   {
-    image: '/projects/ghl-automation/telefono-capturado.png',
+    image: '/projects/ghl-automation/telefono-captured.png',
     title: 'Detección Automática de Leads',
     description: 'Workflow que identifica automáticamente cuando se captura un nuevo teléfono o lead, este workflow al identificar el nuevo lead retira el contacto del seguimiento cada 2 horas.'
   },
@@ -211,55 +212,81 @@ const Projects = () => {
       </AnimatedSection>
 
       <Dialog open={!!selectedImage} onOpenChange={(open) => !open && setSelectedImage(null)}>
-        <DialogContent className="max-w-5xl w-[95vw] p-0 overflow-hidden bg-card border-border">
-          {selectedImage && (
-            <div className="flex flex-col lg:flex-row h-full max-h-[90vh]">
-
-              <div className="relative w-full lg:w-2/3 h-[40vh] lg:h-auto bg-black/5 dark:bg-white/5 flex items-center justify-center p-4">
-                <div className="relative w-full h-full min-h-[300px]">
-                  <Image
-                    src={selectedImage.image}
-                    alt={selectedImage.title}
-                    fill
-                    className="object-contain"
-                    unoptimized={true}
-                    priority
-                  />
-                </div>
-              </div>
-
-              <div className="w-full lg:w-1/3 p-6 lg:p-8 flex flex-col overflow-y-auto bg-background/95 backdrop-blur">
-                <DialogHeader className="mb-4">
-                  <DialogTitle className="text-xl md:text-2xl font-bold leading-tight text-primary">
-                    {selectedImage.title}
-                  </DialogTitle>
-                </DialogHeader>
-
-                <div className="space-y-4 flex-grow">
-                  <div className="prose dark:prose-invert text-sm md:text-base leading-relaxed text-foreground/90">
-                    <p>{selectedImage.description}</p>
-                  </div>
-
-                  <div className="bg-secondary/20 p-4 rounded-lg border border-border/50 mt-4">
-                    <h5 className="font-medium text-sm mb-2 flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                      Detalles del flujo
-                    </h5>
-                    <p className="text-xs text-muted-foreground">
-                      Esta automatización se ejecuta en tiempo real dentro de GoHighLevel, conectando múltiples puntos de contacto.
-                    </p>
-                  </div>
+        <DialogContent className="max-w-5xl w-[95vw] p-0 overflow-hidden bg-card border-border shadow-2xl transition-all duration-300">
+          <AnimatePresence>
+            {selectedImage && (
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="flex flex-col lg:flex-row h-full max-h-[90vh]"
+              >
+                {/* Contenedor de Imagen con animación de escala */}
+                <div className="relative w-full lg:w-2/3 h-[40vh] lg:h-auto bg-muted/30 flex items-center justify-center p-4 overflow-hidden">
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    className="relative w-full h-full min-h-[300px]"
+                  >
+                    <Image
+                      src={selectedImage.image}
+                      alt={selectedImage.title}
+                      fill
+                      className="object-contain drop-shadow-2xl"
+                      unoptimized={true}
+                      priority
+                    />
+                  </motion.div>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-border flex justify-end">
-                  <Button variant="outline" onClick={() => setSelectedImage(null)}>
-                    Cerrar
-                  </Button>
-                </div>
-              </div>
+                {/* Panel lateral con información y entrada suave */}
+                <div className="w-full lg:w-1/3 p-6 lg:p-10 flex flex-col bg-background/60 backdrop-blur-xl border-l border-border/50">
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2, duration: 0.5 }}
+                    className="flex flex-col h-full"
+                  >
+                    <DialogHeader className="mb-6">
+                      <DialogTitle className="text-2xl md:text-3xl font-bold leading-tight bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent">
+                        {selectedImage.title}
+                      </DialogTitle>
+                    </DialogHeader>
 
-            </div>
-          )}
+                    <div className="flex-grow">
+                      <div className="prose dark:prose-invert text-sm md:text-base leading-relaxed text-foreground/90">
+                        <p>{selectedImage.description}</p>
+                      </div>
+
+                      <div className="bg-primary/5 p-5 rounded-2xl border border-primary/10 mt-8 space-y-3">
+                        <h5 className="font-semibold text-sm flex items-center gap-2 text-primary">
+                          <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                          </span>
+                          Detalles del flujo
+                        </h5>
+                        <p className="text-xs text-muted-foreground leading-relaxed">
+                          Esta automatización se ejecuta en tiempo real dentro de GoHighLevel, conectando múltiples puntos de contacto y optimizando la conversión de leads mediante IA.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="mt-8 pt-6 border-t border-border flex justify-end">
+                      <Button 
+                        variant="ghost" 
+                        onClick={() => setSelectedImage(null)}
+                        className="rounded-full hover:bg-primary/10 transition-colors"
+                      >
+                        Cerrar
+                      </Button>
+                    </div>
+                  </motion.div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </DialogContent>
       </Dialog>
     </section>
