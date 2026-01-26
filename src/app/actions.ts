@@ -30,17 +30,13 @@ export async function sendContactMessageAction(
 
   const { name, email, message, countryCode, phone } = validatedFields.data;
   
-  // Tu número de teléfono (sin el + ni espacios, solo números)
   const yourPhoneNumber = '573233321701'; 
 
-  // --- CAMBIO AQUÍ: Formato "Prospecto Real" ---
-  // Estructura: Saludo casual + Contexto + Mensaje del usuario + Cierre con datos
   
   let whatsappMessage = `Hola Juanfer! 👋 Vengo de ver tu portafolio.\n\n`;
   whatsappMessage += `Soy *${name}* y te escribo por lo siguiente:\n\n`;
   whatsappMessage += `"${message}"\n\n`;
   
-  // Añadimos los datos de contacto como si la persona te los dejara al final
   whatsappMessage += `________\n`;
   whatsappMessage += `Te dejo mis datos de contacto:\n`;
   whatsappMessage += `📧 ${email}`;
@@ -50,7 +46,6 @@ export async function sendContactMessageAction(
     whatsappMessage += `\n📱 ${fullPhoneNumber}`;
   }
 
-  // Codificamos la URL
   const whatsappUrl = `https://wa.me/${yourPhoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return {
