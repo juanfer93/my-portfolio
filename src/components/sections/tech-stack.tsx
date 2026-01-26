@@ -21,7 +21,7 @@ const techCategories = [
   {
     title: 'AI Engineering & Tools',
     icon: <BrainCircuit className="h-8 w-8 text-primary" />,
-    skills: ['Antigravity (Agentic)', 'Cursor & Codex', 'Stitch AI (Design)', 'N8n', 'GoHighLevel', 'Integración de LLMs', 'MCP'],
+    skills: ['Antigravity (Agentic)', 'Cursor & Codex', 'Stitch AI (Design)', 'N8n', 'GoHighLevel', 'Integración de LLMs', 'MCP', 'RetellAI'],
   },
 ];
 
