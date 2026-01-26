@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Github, ExternalLink, Maximize2 } from 'lucide-react';
+import { Github, ExternalLink, Maximize2, Eye } from 'lucide-react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
@@ -12,6 +12,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { PlaceHolderImages } from '../../lib/placeholder-images';
 import AnimatedSection from '../animated-section';
 
+// Datos de las diapositivas de automatización
 const automationSlides = [
   {
     image: '/projects/ghl-automation/fb-messenger-1.png',
@@ -36,7 +37,7 @@ const automationSlides = [
   {
     image: '/projects/ghl-automation/telefono-capturado.png',
     title: 'Detección Automática de Leads',
-    description: 'Workflow que identifica automáticamente cuando se captura un nuevo teléfono o lead, activando flujos de bienvenida y asignación inteligente.'
+    description: 'Workflow que identifica automáticamente cuando se captura un nuevo teléfono o lead, este workflow al identificar el nuevo lead retira el contacto del seguimiento cada 2 horas.'
   },
   {
     image: '/projects/ghl-automation/llamada-ia.png',
@@ -83,7 +84,6 @@ const projectsData = [
 
 const Projects = () => {
   const [selectedImage, setSelectedImage] = useState<{ image: string; title: string; description: string } | null>(null);
-  const [showDescription, setShowDescription] = useState(false);
 
   return (
     <section id="projects" className="w-full py-20 md:py-28 lg:py-32 bg-secondary/10">
@@ -95,133 +95,170 @@ const Projects = () => {
               Una selección de mis trabajos que demuestra mis habilidades y mi pasión por el desarrollo.
             </p>
           </div>
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
+
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {projectsData.map((project) => (
-              <Card key={project.title} className="flex flex-col overflow-hidden bg-card/50 border-border/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-2">
-                <CardHeader className="p-0">
-                  {project.hasCarousel && project.carouselSlides ? (
-                    <div className="p-6 pb-0">
-                      <Carousel className="w-full">
-                        <CarouselContent>
-                          {project.carouselSlides.map((slide, index) => (
-                            <CarouselItem key={index}>
-                              <div className="space-y-4">
-                                <div
-                                  className="aspect-video relative overflow-hidden rounded-lg bg-secondary/20 cursor-pointer group"
-                                  onClick={() => {
-                                    setSelectedImage(slide);
-                                    setShowDescription(false);
-                                  }}
-                                >
-                                  <Image
-                                    src={slide.image}
-                                    alt={slide.title}
-                                    fill
-                                    className="object-contain transition-transform duration-300 group-hover:scale-105"
-                                  />
-                                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
-                                    <Maximize2 className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <Card key={project.title} className="flex flex-col overflow-hidden bg-card/50 border-border/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-2 h-full">
+
+                {project.hasCarousel && project.carouselSlides ? (
+                  <div className="flex flex-col h-full">
+                    <CardHeader className="p-0">
+                      <div className="p-6 pb-2">
+                        <Carousel className="w-full">
+                          <CarouselContent>
+                            {project.carouselSlides.map((slide, index) => (
+                              <CarouselItem key={index}>
+                                <div className="flex flex-col gap-4">
+                                  <div
+                                    className="aspect-video relative overflow-hidden rounded-lg bg-secondary/20 cursor-pointer group shadow-sm border border-border/50"
+                                    onClick={() => setSelectedImage(slide)}
+                                  >
+                                    <Image
+                                      src={slide.image}
+                                      alt={slide.title}
+                                      fill
+                                      className="object-contain transition-transform duration-500 group-hover:scale-105"
+                                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    />
+                                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                                      <div className="bg-background/90 text-foreground px-4 py-2 rounded-full opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-2 text-sm font-medium">
+                                        <Maximize2 className="w-4 h-4" /> Ampliar
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div className="text-center space-y-3 px-1">
+                                    <h4 className="font-semibold text-lg leading-tight">{slide.title}</h4>
+
+                                    <Button
+                                      variant="secondary"
+                                      size="sm"
+                                      className="w-full sm:w-auto gap-2"
+                                      onClick={() => setSelectedImage(slide)}
+                                    >
+                                      <Eye className="w-4 h-4" /> Ver descripción completa
+                                    </Button>
                                   </div>
                                 </div>
-                                <div className="space-y-2">
-                                  <h4 className="font-semibold text-sm leading-tight">{slide.title}</h4>
-                                  <p className="text-xs text-foreground/70 leading-relaxed">{slide.description}</p>
-                                </div>
-                              </div>
-                            </CarouselItem>
-                          ))}
-                        </CarouselContent>
-                        <CarouselPrevious className="left-2" />
-                        <CarouselNext className="right-2" />
-                      </Carousel>
-                    </div>
-                  ) : (
-                    project.image && (
-                      <div className="aspect-video relative overflow-hidden">
-                        <Image
-                          src={project.image.imageUrl}
-                          alt={project.image.description}
-                          fill
-                          className="object-cover transition-transform duration-300 group-hover:scale-105"
-                          data-ai-hint={project.image.imageHint}
-                        />
+                              </CarouselItem>
+                            ))}
+                          </CarouselContent>
+                          <CarouselPrevious className="left-2 bg-background/80 hover:bg-background" />
+                          <CarouselNext className="right-2 bg-background/80 hover:bg-background" />
+                        </Carousel>
                       </div>
-                    )
-                  )}
-                </CardHeader>
-                <div className="p-6 flex flex-col flex-grow">
-                  <CardTitle>{project.title}</CardTitle>
-                  <CardContent className="p-0 pt-4 flex-grow">
-                    <p className="text-foreground/80">{project.description}</p>
-                  </CardContent>
-                  <CardFooter className="p-0 pt-6 flex flex-col items-start gap-4">
-                    <div className="flex flex-wrap gap-2">
-                      {project.stack.map((tech) => (
-                        <Badge key={tech} variant="secondary" className="rounded-md">{tech}</Badge>
-                      ))}
+                    </CardHeader>
+
+                    <div className="p-6 pt-2 mt-auto">
+                      <CardContent className="p-0 pt-2 pb-4">
+                        <p className="text-foreground/80 text-sm">{project.description}</p>
+                      </CardContent>
+                      <div className="flex flex-wrap gap-2">
+                        {project.stack.map((tech) => (
+                          <Badge key={tech} variant="outline" className="rounded-md bg-secondary/10">{tech}</Badge>
+                        ))}
+                      </div>
                     </div>
-                    {!project.hasCarousel && (
-                      <Button asChild variant="outline" className="w-full sm:w-auto rounded-full">
-                        <Link href={project.link} target="_blank" rel="noopener noreferrer">
-                          {project.link.includes('github.com') ? (
-                            <>
-                              <Github className="mr-2 h-4 w-4" />
-                              Ver en GitHub
-                            </>
-                          ) : (
-                            <>
-                              <ExternalLink className="mr-2 h-4 w-4" />
-                              Visitar Sitio
-                            </>
-                          )}
-                        </Link>
-                      </Button>
-                    )}
-                  </CardFooter>
-                </div>
+                  </div>
+                ) : (
+                  <>
+                    <CardHeader className="p-0">
+                      {project.image && (
+                        <div className="aspect-video relative overflow-hidden group">
+                          <Image
+                            src={project.image.imageUrl}
+                            alt={project.image.description}
+                            fill
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                        </div>
+                      )}
+                    </CardHeader>
+                    <div className="p-6 flex flex-col flex-grow">
+                      <CardTitle className="mb-2 text-xl">{project.title}</CardTitle>
+                      <CardContent className="p-0 pt-2 flex-grow">
+                        <p className="text-foreground/80 leading-relaxed">{project.description}</p>
+                      </CardContent>
+                      <CardFooter className="p-0 pt-6 flex flex-col items-start gap-4">
+                        <div className="flex flex-wrap gap-2">
+                          {project.stack.map((tech) => (
+                            <Badge key={tech} variant="secondary" className="rounded-md">{tech}</Badge>
+                          ))}
+                        </div>
+                        <Button asChild variant="outline" className="w-full sm:w-auto rounded-full group">
+                          <Link href={project.link} target="_blank" rel="noopener noreferrer">
+                            {project.link.includes('github.com') ? (
+                              <>
+                                <Github className="mr-2 h-4 w-4" />
+                                Ver en GitHub
+                              </>
+                            ) : (
+                              <>
+                                <ExternalLink className="mr-2 h-4 w-4 group-hover:text-primary transition-colors" />
+                                Visitar Sitio
+                              </>
+                            )}
+                          </Link>
+                        </Button>
+                      </CardFooter>
+                    </div>
+                  </>
+                )}
               </Card>
             ))}
           </div>
         </div>
       </AnimatedSection>
 
-      {/* Modal para ver imagen completa */}
-      <Dialog open={!!selectedImage} onOpenChange={(open) => {
-        if (!open) {
-          setSelectedImage(null);
-          setShowDescription(false);
-        }
-      }}>
-        <DialogContent className="max-w-4xl w-[95vw] max-h-[90vh] p-4 sm:p-6">
+      <Dialog open={!!selectedImage} onOpenChange={(open) => !open && setSelectedImage(null)}>
+        <DialogContent className="max-w-5xl w-[95vw] p-0 overflow-hidden bg-card border-border">
           {selectedImage && (
-            <>
-              <DialogHeader className="space-y-3">
-                <DialogTitle className="text-base sm:text-lg leading-tight pr-6">{selectedImage.title}</DialogTitle>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setShowDescription(!showDescription)}
-                  className="w-fit"
-                >
-                  {showDescription ? 'Ocultar Descripción' : 'Ver Descripción'}
-                </Button>
-              </DialogHeader>
-              <div className="space-y-4">
-                <div className="relative w-full h-[55vh] sm:h-[60vh] bg-secondary/20 rounded-lg overflow-hidden">
+            <div className="flex flex-col lg:flex-row h-full max-h-[90vh]">
+
+              <div className="relative w-full lg:w-2/3 h-[40vh] lg:h-auto bg-black/5 dark:bg-white/5 flex items-center justify-center p-4">
+                <div className="relative w-full h-full min-h-[300px]">
                   <Image
                     src={selectedImage.image}
                     alt={selectedImage.title}
                     fill
                     className="object-contain"
+                    unoptimized={true}
+                    priority
                   />
                 </div>
-                {showDescription && (
-                  <DialogDescription className="text-sm sm:text-base leading-relaxed animate-in slide-in-from-top-2 duration-300">
-                    {selectedImage.description}
-                  </DialogDescription>
-                )}
               </div>
-            </>
+
+              <div className="w-full lg:w-1/3 p-6 lg:p-8 flex flex-col overflow-y-auto bg-background/95 backdrop-blur">
+                <DialogHeader className="mb-4">
+                  <DialogTitle className="text-xl md:text-2xl font-bold leading-tight text-primary">
+                    {selectedImage.title}
+                  </DialogTitle>
+                </DialogHeader>
+
+                <div className="space-y-4 flex-grow">
+                  <div className="prose dark:prose-invert text-sm md:text-base leading-relaxed text-foreground/90">
+                    <p>{selectedImage.description}</p>
+                  </div>
+
+                  <div className="bg-secondary/20 p-4 rounded-lg border border-border/50 mt-4">
+                    <h5 className="font-medium text-sm mb-2 flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                      Detalles del flujo
+                    </h5>
+                    <p className="text-xs text-muted-foreground">
+                      Esta automatización se ejecuta en tiempo real dentro de GoHighLevel, conectando múltiples puntos de contacto.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-border flex justify-end">
+                  <Button variant="outline" onClick={() => setSelectedImage(null)}>
+                    Cerrar
+                  </Button>
+                </div>
+              </div>
+
+            </div>
           )}
         </DialogContent>
       </Dialog>
