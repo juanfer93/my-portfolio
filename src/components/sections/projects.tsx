@@ -325,18 +325,20 @@ const Projects = () => {
                         {selectedImage.description}
                       </div>
 
-                      <div className="bg-primary/5 p-5 rounded-2xl border border-primary/10 space-y-3">
-                        <h5 className="font-semibold text-sm flex items-center gap-2 text-primary">
-                          <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-                          </span>
-                          Detalles del flujo
-                        </h5>
-                        <p className="text-xs text-muted-foreground leading-relaxed">
-                          Esta automatización se ejecuta en tiempo real dentro de GoHighLevel, conectando múltiples puntos de contacto y optimizando la conversión de leads mediante IA.
-                        </p>
-                      </div>
+                      {selectedImage.image.startsWith('/projects/ghl-automation/') && (
+                        <div className="bg-primary/5 p-5 rounded-2xl border border-primary/10 space-y-3">
+                          <h5 className="font-semibold text-sm flex items-center gap-2 text-primary">
+                            <span className="relative flex h-2 w-2">
+                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                            </span>
+                            Detalles del flujo
+                          </h5>
+                          <p className="text-xs text-muted-foreground leading-relaxed">
+                            Esta automatización se ejecuta en tiempo real dentro de GoHighLevel, conectando múltiples puntos de contacto y optimizando la conversión de leads mediante IA.
+                          </p>
+                        </div>
+                      )}
                     </div>
 
                   </motion.div>
