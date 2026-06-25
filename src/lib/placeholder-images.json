@@ -1,10 +1,10 @@
 {
   "placeholderImages": [
     {
-      "id": "project-snake-game",
-      "description": "Screenshot of a snake game on a computer screen.",
-      "imageUrl": "https://images.unsplash.com/photo-1666863402610-6f2965367957?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxnYW1lJTIwY29kZXxlbnwwfHx8fDE3NjM5MjgzNjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "game code"
+      "id": "project-jota-delivery",
+      "description": "Screenshot of a delivery app interface showing a map and orders.",
+      "imageUrl": "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkZWxpdmVyeSUyMGFwcHxlbnwwfHx8fDE3NjM5MjgzNjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "delivery app"
     },
     {
       "id": "project-portfolio",

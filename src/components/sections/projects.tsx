@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, ExternalLink, Maximize2, Eye } from 'lucide-react';
+import { Github, ExternalLink, Maximize2, Eye, Download } from 'lucide-react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
@@ -13,7 +13,6 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { PlaceHolderImages } from '../../lib/placeholder-images';
 import AnimatedSection from '../animated-section';
 
-// Datos de las diapositivas de automatización - RUTAS CORREGIDAS
 const automationSlides = [
   {
     image: '/projects/ghl-automation/fb-messenger-1.png',
@@ -47,14 +46,44 @@ const automationSlides = [
   }
 ];
 
+const jotaDeliverySlides = [
+  {
+    image: '/projects/jota-delivery/1-login.png',
+    title: 'Inicio de Sesión Seguro',
+    description: 'Pantalla de acceso para administradores y domiciliarios.'
+  },
+  {
+    image: '/projects/jota-delivery/2-panel-admin.png',
+    title: 'Panel de Administración',
+    description: 'Gestión centralizada para administradores con acceso a opciones y configuración de la cuenta privada.'
+  },
+  {
+    image: '/projects/jota-delivery/3-directorio.png',
+    title: 'Directorio de Usuarios y Comercios',
+    description: 'Control y búsqueda de comercios aliados y domiciliarios activos en la plataforma.'
+  },
+  {
+    image: '/projects/jota-delivery/4-pedidos-admin.png',
+    title: 'Gestión de Pedidos',
+    description: 'Creación y asignación de órdenes de entrega con seguimiento y filtrado.'
+  },
+  {
+    image: '/projects/jota-delivery/5-pedidos-domiciliario.png',
+    title: 'Panel del Domiciliario',
+    description: 'Interfaz dedicada para que el repartidor reciba, acepte y actualice el estado de los pedidos disponibles.'
+  }
+];
+
 const projectsData = [
   {
-    title: 'Snake Game',
-    description: 'Una recreación moderna del clásico juego con lógica optimizada en JavaScript y React.',
-    stack: ['React', 'NextJs', 'TypeScript', 'TailwindCSS'],
-    link: 'https://github.com/juanfer93/snake-game',
-    image: PlaceHolderImages.find(img => img.id === 'project-snake-game'),
-    hasCarousel: false,
+    title: 'Jota Delivery',
+    description: 'Aplicación privada para gestión interna de pedidos y entregas. Cuenta con un panel administrativo para la creación y asignación de órdenes, y una interfaz de domiciliario para aceptar y actualizar el estado de los envíos.',
+    stack: ['React Native', 'TypeScript', 'Firebase', 'Node.js'],
+    link: 'https://expo.dev/artifacts/eas/namHSRjAijuNg8T4dzBk6DKvQ7sNqJK2bHiuG6FaNLg.apk',
+    image: PlaceHolderImages.find(img => img.id === 'project-jota-delivery'),
+    logo: '/projects/jota-delivery/logo.png',
+    hasCarousel: true,
+    carouselSlides: jotaDeliverySlides,
   },
   {
     title: 'King Electric Home',
@@ -147,14 +176,44 @@ const Projects = () => {
                       </div>
                     </CardHeader>
                     <div className="p-6 pt-2 mt-auto">
+                      <div className="flex items-center gap-3 mb-2">
+                        {project.logo && (
+                          <div className="relative w-8 h-8 rounded-full overflow-hidden shrink-0 border border-border/50 bg-white">
+                            <Image src={project.logo} alt={`${project.title} logo`} fill className="object-contain" />
+                          </div>
+                        )}
+                        <CardTitle className="text-xl m-0">{project.title}</CardTitle>
+                      </div>
                       <CardContent className="p-0 pt-2 pb-4">
                         <p className="text-foreground/80 text-sm">{project.description}</p>
                       </CardContent>
-                      <div className="flex flex-wrap gap-2">
-                        {project.stack.map((tech) => (
-                          <Badge key={tech} variant="outline" className="rounded-md bg-secondary/10">{tech}</Badge>
-                        ))}
-                      </div>
+                      <CardFooter className="p-0 pt-6 flex flex-col items-start gap-4 mt-4">
+                        <div className="flex flex-wrap gap-2">
+                          {project.stack.map((tech) => (
+                            <Badge key={tech} variant="outline" className="rounded-md bg-secondary/10">{tech}</Badge>
+                          ))}
+                        </div>
+                        <Button asChild variant="outline" className="w-full sm:w-auto rounded-full group">
+                          <Link href={project.link} target="_blank" rel="noopener noreferrer">
+                            {project.link.includes('github.com') ? (
+                              <>
+                                <Github className="mr-2 h-4 w-4" />
+                                Ver en GitHub
+                              </>
+                            ) : project.link.endsWith('.apk') ? (
+                              <>
+                                <Download className="mr-2 h-4 w-4 group-hover:text-primary transition-colors" />
+                                Descargar APK
+                              </>
+                            ) : (
+                              <>
+                                <ExternalLink className="mr-2 h-4 w-4 group-hover:text-primary transition-colors" />
+                                Visitar Sitio
+                              </>
+                            )}
+                          </Link>
+                        </Button>
+                      </CardFooter>
                     </div>
                   </div>
                 ) : (
@@ -172,7 +231,14 @@ const Projects = () => {
                       )}
                     </CardHeader>
                     <div className="p-6 flex flex-col flex-grow">
-                      <CardTitle className="mb-2 text-xl">{project.title}</CardTitle>
+                      <div className="flex items-center gap-3 mb-2">
+                        {project.logo && (
+                          <div className="relative w-8 h-8 rounded-full overflow-hidden shrink-0 border border-border/50 bg-white">
+                            <Image src={project.logo} alt={`${project.title} logo`} fill className="object-contain" />
+                          </div>
+                        )}
+                        <CardTitle className="text-xl m-0">{project.title}</CardTitle>
+                      </div>
                       <CardContent className="p-0 pt-2 flex-grow">
                         <p className="text-foreground/80 leading-relaxed">{project.description}</p>
                       </CardContent>
@@ -188,6 +254,11 @@ const Projects = () => {
                               <>
                                 <Github className="mr-2 h-4 w-4" />
                                 Ver en GitHub
+                              </>
+                            ) : project.link.endsWith('.apk') ? (
+                              <>
+                                <Download className="mr-2 h-4 w-4 group-hover:text-primary transition-colors" />
+                                Descargar APK
                               </>
                             ) : (
                               <>
@@ -208,20 +279,18 @@ const Projects = () => {
       </AnimatedSection>
 
       <Dialog open={!!selectedImage} onOpenChange={(open) => !open && setSelectedImage(null)}>
-        {/* Eliminamos el overflow-hidden del DialogContent para permitir scroll si es necesario */}
         <DialogContent className="max-w-5xl w-[95vw] p-0 bg-card border-border shadow-2xl overflow-hidden">
           <AnimatePresence mode="wait">
             {selectedImage && (
-              <motion.div 
+              <motion.div
                 key={selectedImage.image}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 className="flex flex-col lg:flex-row min-h-[50vh] max-h-[90vh]"
               >
-                {/* Contenedor de Imagen */}
                 <div className="relative w-full lg:w-2/3 min-h-[300px] lg:h-auto bg-muted/30 flex items-center justify-center p-6">
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.4 }}
@@ -238,7 +307,6 @@ const Projects = () => {
                   </motion.div>
                 </div>
 
-                {/* Panel lateral con scroll independiente para evitar que se corte el texto */}
                 <div className="w-full lg:w-1/3 p-6 lg:p-10 flex flex-col bg-background/60 backdrop-blur-xl border-t lg:border-t-0 lg:border-l border-border/50 overflow-y-auto">
                   <motion.div
                     initial={{ opacity: 0, x: 20 }}
