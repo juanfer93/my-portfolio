@@ -13,6 +13,8 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { PlaceHolderImages } from '../../lib/placeholder-images';
 import AnimatedSection from '../animated-section';
 
+const dealerPilotPlatformObjective = 'DealerPilot es una plataforma operativa para concesionarios que centraliza inventario, detecta oportunidades de publicación, coordina publicaciones en Facebook Marketplace, mejora fotos con IA y asiste conversaciones con compradores. Su objetivo es reducir trabajo manual, acelerar la salida de vehículos al mercado y dar seguimiento comercial desde un dashboard conectado al backend y a extensiones Chrome.';
+
 const automationSlides = [
   {
     image: '/projects/ghl-automation/fb-messenger-1.png',
@@ -74,6 +76,57 @@ const jotaDeliverySlides = [
   }
 ];
 
+const dealerPilotSlides = [
+  {
+    image: '/projects/dealerpilot-ai-operator/command-dashboard.png',
+    title: 'Command Dashboard',
+    description: 'Dashboard principal de DealerPilot con oportunidades del día, estado de extensión, conexión con Facebook, métricas operativas y línea de tiempo del sistema.',
+    context: 'Me integré a una plataforma existente para fortalecer módulos críticos, mejorar mantenibilidad y preservar flujos operativos ya activos.'
+  },
+  {
+    image: '/projects/dealerpilot-ai-operator/publishing-cockpit.png',
+    title: 'Publishing Cockpit',
+    description: 'Módulo de publicación en Marketplace donde se gestionan vehículos listos para publicar, estrategias de publicación, estados live, fallidos y programados.',
+    context: 'Refactoricé y estabilicé rutas críticas de publicación cuidando contratos existentes y reduciendo riesgo de regresiones.'
+  },
+  {
+    image: '/projects/dealerpilot-ai-operator/vehicle-catalog.png',
+    title: 'Vehicle Catalog',
+    description: 'Catálogo de inventario con vehículos, estados, precios, kilometraje y controles para preparar unidades para publicación.',
+    context: 'Ayudé a organizar responsabilidades entre inventario, publicaciones y dashboard para que el sistema fuera más claro de mantener.'
+  },
+  {
+    image: '/projects/dealerpilot-ai-operator/ai-photo-studio.png',
+    title: 'AI Photo Studio',
+    description: 'Módulo de mejora de imágenes con IA para optimizar fotos de vehículos antes de publicarlas en Marketplace.',
+    context: 'Participé en la integración y mejora de módulos relacionados con automatización IA dentro del flujo operativo del producto.'
+  },
+  {
+    image: '/projects/dealerpilot-ai-operator/sales-ai-command-inbox.png',
+    title: 'Sales AI / Command Inbox',
+    description: 'Bandeja de conversaciones asistida por IA para responder compradores, revisar intención del cliente y manejar respuestas automáticas o asistidas.',
+    context: 'Trabajé sobre Messenger AI y flujos de respuesta asistida, validando comportamiento real conectado a backend y Facebook Marketplace.'
+  },
+  {
+    image: '/projects/dealerpilot-ai-operator/dealer-dna.png',
+    title: 'Dealer DNA',
+    description: 'Configuración de identidad visual del concesionario, colores de marca y preview para materiales generados por DealerPilot.',
+    context: 'Fortalecí módulos de configuración y frontend manteniendo el diseño existente y separando responsabilidades sin reescrituras innecesarias.'
+  },
+  {
+    image: '/projects/dealerpilot-ai-operator/ai-publisher-extension.png',
+    title: 'DealerPilot AI Publisher Extension',
+    description: 'Extensión Chrome conectada a Facebook Marketplace y al backend de DealerPilot para validar sesión, recibir trabajos aprobados y ejecutar publicaciones asistidas o automáticas.',
+    context: 'Participé en la estabilización de la extensión de publicación y en la separación de responsabilidades frente al módulo de Messenger AI.'
+  },
+  {
+    image: '/projects/dealerpilot-ai-operator/messenger-ai-extension.png',
+    title: 'DealerPilot Messenger AI Extension',
+    description: 'Extensión Chrome independiente para conversaciones de Marketplace, conectada al backend de DealerPilot, con lectura de contexto del DOM, dry-run, auto-reply y respuestas asistidas por IA.',
+    context: 'Separé y estabilicé la experiencia de Messenger AI como módulo independiente para reducir acoplamiento con la publicación en Marketplace.'
+  }
+];
+
 const projectsData = [
   {
     title: 'Jota Delivery',
@@ -84,6 +137,19 @@ const projectsData = [
     logo: '/projects/jota-delivery/logo.png',
     hasCarousel: true,
     carouselSlides: jotaDeliverySlides,
+  },
+  {
+    title: 'DealerPilot AI Operator',
+    description: 'Me integré a DealerPilot, una plataforma existente para automatizar operaciones de concesionarios: inventario, publicación en Facebook Marketplace, respuestas asistidas por IA, mejora de fotos, configuración de marca y seguimiento operativo desde un dashboard.',
+    platformObjective: dealerPilotPlatformObjective,
+    role: 'Software Developer & AI Automation Specialist',
+    roleSubtitle: 'Refactorización técnica, arquitectura, automatización IA y estabilización de flujos existentes.',
+    stack: ['TypeScript', 'React', 'Node.js', 'Chrome Extensions', 'APIs', 'OpenAI', 'AI Automation', 'Marketplace Automation', 'Software Architecture'],
+    link: '#contacto',
+    image: PlaceHolderImages.find(img => img.id === 'project-ghl-automation'),
+    hasCarousel: true,
+    carouselSlides: dealerPilotSlides,
+    featured: true,
   },
   {
     title: 'King Electric Home',
@@ -113,7 +179,7 @@ const projectsData = [
 ];
 
 const Projects = () => {
-  const [selectedImage, setSelectedImage] = useState<{ image: string; title: string; description: string } | null>(null);
+  const [selectedImage, setSelectedImage] = useState<{ image: string; title: string; description: string; context?: string; platformObjective?: string } | null>(null);
 
   return (
     <section id="projects" className="w-full py-20 md:py-28 lg:py-32 bg-secondary/10">
@@ -128,7 +194,7 @@ const Projects = () => {
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {projectsData.map((project) => (
-              <Card key={project.title} className="flex flex-col overflow-hidden bg-card/50 border-border/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-2 h-full">
+              <Card key={project.title} className={`flex flex-col overflow-hidden bg-card/50 border-border/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-2 h-full ${project.featured ? 'border-primary/30 shadow-lg shadow-primary/10' : ''}`}>
                 {project.hasCarousel && project.carouselSlides ? (
                   <div className="flex flex-col h-full">
                     <CardHeader className="p-0">
@@ -140,7 +206,7 @@ const Projects = () => {
                                 <div className="flex flex-col gap-4">
                                   <div
                                     className="aspect-video relative overflow-hidden rounded-lg bg-secondary/20 cursor-pointer group shadow-sm border border-border/50"
-                                    onClick={() => setSelectedImage(slide)}
+                                    onClick={() => setSelectedImage({ ...slide, platformObjective: project.platformObjective })}
                                   >
                                     <Image
                                       src={slide.image}
@@ -161,7 +227,7 @@ const Projects = () => {
                                       variant="secondary"
                                       size="sm"
                                       className="w-full sm:w-auto gap-2"
-                                      onClick={() => setSelectedImage(slide)}
+                                      onClick={() => setSelectedImage({ ...slide, platformObjective: project.platformObjective })}
                                     >
                                       <Eye className="w-4 h-4" /> Ver descripción completa
                                     </Button>
@@ -182,10 +248,31 @@ const Projects = () => {
                             <Image src={project.logo} alt={`${project.title} logo`} fill className="object-contain" />
                           </div>
                         )}
-                        <CardTitle className="text-xl m-0">{project.title}</CardTitle>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <CardTitle className="text-xl m-0">{project.title}</CardTitle>
+                            {project.featured && (
+                              <Badge variant="secondary" className="rounded-md bg-primary/10 text-primary border border-primary/20">
+                                Proyecto destacado
+                              </Badge>
+                            )}
+                          </div>
+                          {project.role && (
+                            <p className="text-sm font-medium text-primary">{project.role}</p>
+                          )}
+                        </div>
                       </div>
                       <CardContent className="p-0 pt-2 pb-4">
                         <p className="text-foreground/80 text-sm">{project.description}</p>
+                        {project.platformObjective && (
+                          <div className="mt-4 rounded-lg border border-primary/10 bg-primary/5 p-4">
+                            <p className="text-xs font-semibold uppercase tracking-wider text-primary">Qué hace DealerPilot</p>
+                            <p className="mt-2 text-xs leading-relaxed text-foreground/75">{project.platformObjective}</p>
+                          </div>
+                        )}
+                        {project.roleSubtitle && (
+                          <p className="mt-3 text-xs leading-relaxed text-muted-foreground">{project.roleSubtitle}</p>
+                        )}
                       </CardContent>
                       <CardFooter className="p-0 pt-6 flex flex-col items-start gap-4 mt-4">
                         <div className="flex flex-wrap gap-2">
@@ -194,7 +281,7 @@ const Projects = () => {
                           ))}
                         </div>
                         <Button asChild variant="outline" className="w-full sm:w-auto rounded-full group">
-                          <Link href={project.link} target="_blank" rel="noopener noreferrer">
+                          <Link href={project.link} target={project.link.startsWith('#') ? undefined : '_blank'} rel={project.link.startsWith('#') ? undefined : 'noopener noreferrer'}>
                             {project.link.includes('github.com') ? (
                               <>
                                 <Github className="mr-2 h-4 w-4" />
@@ -208,7 +295,7 @@ const Projects = () => {
                             ) : (
                               <>
                                 <ExternalLink className="mr-2 h-4 w-4 group-hover:text-primary transition-colors" />
-                                Visitar Sitio
+                                {project.link.startsWith('#') ? 'Contactar' : 'Visitar Sitio'}
                               </>
                             )}
                           </Link>
@@ -237,10 +324,25 @@ const Projects = () => {
                             <Image src={project.logo} alt={`${project.title} logo`} fill className="object-contain" />
                           </div>
                         )}
-                        <CardTitle className="text-xl m-0">{project.title}</CardTitle>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <CardTitle className="text-xl m-0">{project.title}</CardTitle>
+                            {project.featured && (
+                              <Badge variant="secondary" className="rounded-md bg-primary/10 text-primary border border-primary/20">
+                                Proyecto destacado
+                              </Badge>
+                            )}
+                          </div>
+                          {project.role && (
+                            <p className="text-sm font-medium text-primary">{project.role}</p>
+                          )}
+                        </div>
                       </div>
                       <CardContent className="p-0 pt-2 flex-grow">
                         <p className="text-foreground/80 leading-relaxed">{project.description}</p>
+                        {project.roleSubtitle && (
+                          <p className="mt-3 text-xs leading-relaxed text-muted-foreground">{project.roleSubtitle}</p>
+                        )}
                       </CardContent>
                       <CardFooter className="p-0 pt-6 flex flex-col items-start gap-4">
                         <div className="flex flex-wrap gap-2">
@@ -249,7 +351,7 @@ const Projects = () => {
                           ))}
                         </div>
                         <Button asChild variant="outline" className="w-full sm:w-auto rounded-full group">
-                          <Link href={project.link} target="_blank" rel="noopener noreferrer">
+                          <Link href={project.link} target={project.link.startsWith('#') ? undefined : '_blank'} rel={project.link.startsWith('#') ? undefined : 'noopener noreferrer'}>
                             {project.link.includes('github.com') ? (
                               <>
                                 <Github className="mr-2 h-4 w-4" />
@@ -263,7 +365,7 @@ const Projects = () => {
                             ) : (
                               <>
                                 <ExternalLink className="mr-2 h-4 w-4 group-hover:text-primary transition-colors" />
-                                Visitar Sitio
+                                {project.link.startsWith('#') ? 'Contactar' : 'Visitar Sitio'}
                               </>
                             )}
                           </Link>
@@ -325,6 +427,15 @@ const Projects = () => {
                         {selectedImage.description}
                       </div>
 
+                      {selectedImage.platformObjective && (
+                        <div className="bg-secondary/20 p-5 rounded-2xl border border-border/50 space-y-3 mb-4">
+                          <h5 className="font-semibold text-sm text-foreground">Qué hace DealerPilot</h5>
+                          <p className="text-xs text-muted-foreground leading-relaxed">
+                            {selectedImage.platformObjective}
+                          </p>
+                        </div>
+                      )}
+
                       {selectedImage.image.startsWith('/projects/ghl-automation/') && (
                         <div className="bg-primary/5 p-5 rounded-2xl border border-primary/10 space-y-3">
                           <h5 className="font-semibold text-sm flex items-center gap-2 text-primary">
@@ -336,6 +447,21 @@ const Projects = () => {
                           </h5>
                           <p className="text-xs text-muted-foreground leading-relaxed">
                             Esta automatización se ejecuta en tiempo real dentro de GoHighLevel, conectando múltiples puntos de contacto y optimizando la conversión de leads mediante IA.
+                          </p>
+                        </div>
+                      )}
+
+                      {selectedImage.image.startsWith('/projects/dealerpilot-ai-operator/') && selectedImage.context && (
+                        <div className="bg-primary/5 p-5 rounded-2xl border border-primary/10 space-y-3">
+                          <h5 className="font-semibold text-sm flex items-center gap-2 text-primary">
+                            <span className="relative flex h-2 w-2">
+                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                            </span>
+                            Alcance del trabajo
+                          </h5>
+                          <p className="text-xs text-muted-foreground leading-relaxed">
+                            {selectedImage.context}
                           </p>
                         </div>
                       )}
