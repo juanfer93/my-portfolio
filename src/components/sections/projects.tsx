@@ -144,7 +144,7 @@ const projectsData = [
     platformObjective: dealerPilotPlatformObjective,
     role: 'Software Developer & AI Automation Specialist',
     roleSubtitle: 'Refactorización técnica, arquitectura, automatización IA y estabilización de flujos existentes.',
-    stack: ['TypeScript', 'React', 'Node.js', 'Chrome Extensions', 'APIs', 'OpenAI', 'AI Automation', 'Marketplace Automation', 'Software Architecture'],
+    stack: ['TypeScript', 'React', 'Node.js', 'Chrome Extensions', 'OpenAI'],
     link: '#contacto',
     image: PlaceHolderImages.find(img => img.id === 'project-ghl-automation'),
     hasCarousel: true,
@@ -263,14 +263,10 @@ const Projects = () => {
                         </div>
                       </div>
                       <CardContent className="p-0 pt-2 pb-4">
-                        <p className="text-foreground/80 text-sm">{project.description}</p>
-                        {project.platformObjective && (
-                          <div className="mt-4 rounded-lg border border-primary/10 bg-primary/5 p-4">
-                            <p className="text-xs font-semibold uppercase tracking-wider text-primary">Qué hace DealerPilot</p>
-                            <p className="mt-2 text-xs leading-relaxed text-foreground/75">{project.platformObjective}</p>
-                          </div>
+                        {!project.featured && (
+                          <p className="text-foreground/80 text-sm">{project.description}</p>
                         )}
-                        {project.roleSubtitle && (
+                        {!project.featured && project.roleSubtitle && (
                           <p className="mt-3 text-xs leading-relaxed text-muted-foreground">{project.roleSubtitle}</p>
                         )}
                       </CardContent>
