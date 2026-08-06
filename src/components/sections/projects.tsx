@@ -166,6 +166,7 @@ const projectsData = [
     link: '#contact',
     image: PlaceHolderImages.find(img => img.id === 'project-quillamap'),
     logo: '/projects/quillamap/logo.png',
+    imageFit: 'contain',
     hasCarousel: false,
   },
   {
@@ -312,12 +313,12 @@ const Projects = () => {
                   <>
                     <CardHeader className="p-0">
                       {project.image && (
-                        <div className="aspect-video relative overflow-hidden group">
+                        <div className="aspect-video relative overflow-hidden group bg-secondary/10">
                           <Image
                             src={project.image.imageUrl}
                             alt={project.image.description}
                             fill
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            className={`${project.imageFit === 'contain' ? 'object-contain p-4' : 'object-cover'} transition-transform duration-500 group-hover:scale-105`}
                           />
                         </div>
                       )}
