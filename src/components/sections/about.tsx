@@ -13,7 +13,7 @@ const About = () => {
                 Más que código, soluciones.
               </h2>
               <p className="max-w-[600px] text-foreground/80 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Con más de 2 años de experiencia, combino la ingeniería de software tradicional con potentes herramientas de IA. poseo un conocimiento profundo del código que me permite auditar, optimizar y estructurar lo que la IA genera. Utilizo la inteligencia artificial como un motor de velocidad, pero mi expertise técnico garantiza la calidad, seguridad y escalabilidad de cada solución que entrego para mis clientes.
+                Desarrollador Full Stack & Especialista en Automatización con IA con más de 2 años de experiencia construyendo aplicaciones web/móviles escalables y arquitecturas de integración de alto rendimiento. Especializado en TypeScript, Python, NestJS, React y orquestación de procesos con n8n, GoHighLevel e Inteligencia Artificial.
               </p>
             </div>
             <div className="flex justify-center">

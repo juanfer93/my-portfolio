@@ -18,8 +18,8 @@ const Hero = () => {
               <Badge variant="outline" className="border-primary/50 text-primary py-1 px-3 rounded-full">AI Automation</Badge>
             </div>
             <h1 className="font-headline text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-              <span className="block">Desarrollador de software,</span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-accent to-primary">especialista en automatizacion IA y desarrollo con IA</span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-accent to-primary">Desarrollador Full Stack</span>
+              <span className="block">& Especialista en Automatización con IA</span>
             </h1>
             <p className="mt-6 max-w-2xl mx-auto text-lg text-foreground/80 sm:text-xl">
               Hola, soy Juan Fernando Pacheco Ibañez. Transformo ideas complejas en aplicaciones escalables, flujos de trabajo automatizados y desarrollo con IA.

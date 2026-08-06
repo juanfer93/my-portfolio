@@ -3,9 +3,9 @@ import './globals.css';
 import { Toaster } from '../components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'Juan Fernando Pacheco Ibañez | Software Developer & AI Specialist',
-  description: 'Portfolio of Juan Fernando Pacheco Ibañez, a software developer and AI automation specialist from Colombia. Transforming complex ideas into scalable web applications and automated workflows.',
-  keywords: ['Software Developer', 'AI', 'Colombia', 'Freelance', 'React', 'Python', 'Next.js', 'Automation', 'Juan Fernando Pacheco Ibañez'],
+  title: 'Juan Fernando Pacheco Ibañez | Desarrollador Full Stack & Especialista en Automatización con IA',
+  description: 'Portafolio de Juan Fernando Pacheco Ibañez, Desarrollador Full Stack & Especialista en Automatización con IA. Especializado en TypeScript, Python, NestJS, React y orquestación de procesos con n8n, GoHighLevel e IA.',
+  keywords: ['Full Stack Developer', 'AI Automation', 'TypeScript', 'Python', 'NestJS', 'React', 'n8n', 'GoHighLevel', 'Juan Fernando Pacheco Ibañez'],
   authors: [{ name: 'Juan Fernando Pacheco Ibañez' }],
   creator: 'Juan Fernando Pacheco Ibañez',
 };

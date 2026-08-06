@@ -2,9 +2,21 @@ import { Briefcase } from 'lucide-react';
 import AnimatedSection from '../animated-section';
 
 const experienceData = [
-  { date: 'Actualidad', title: 'Freelance Software Developer', description: 'Desarrollo Full Stack & Consultoría IA.' },
-  { date: 'Anterior', title: 'Wow Desarrollos Digitales', description: 'Mantenimiento y desarrollo de sistemas.' },
-  { date: 'Anterior', title: 'Fundación Estudiar y Trabajar', description: 'Desarrollo de aplicaciones web.' },
+  {
+    date: 'Nov. 2024 – Presente',
+    title: 'Desarrollador e Integrador de Automatizaciones | Independiente',
+    description: 'Diseño e implementación de arquitecturas de automatización con n8n, GoHighLevel y API de Meta/WhatsApp para concesionarios en EE. UU. Refactorización backend de Dealer Pilot AI y desarrollo web de alta conversión.'
+  },
+  {
+    date: 'Mar. 2024 – Nov. 2024',
+    title: 'Programador Junior | Wow Desarrollos Digitales',
+    description: 'Optimización de software catastral con JavaScript, Leaflet y PostGIS, y desarrollo de plataforma web corporativa con React y Express.js.'
+  },
+  {
+    date: 'Oct. 2023 – Mar. 2024',
+    title: 'Programador Junior | Fundación Estudiar y Trabajar',
+    description: 'Desarrollo end-to-end de sistema de gestión para restaurantes con NestJS, Next.js y MySQL.'
+  },
 ];
 
 const Experience = () => {
