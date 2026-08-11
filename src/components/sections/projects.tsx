@@ -14,6 +14,7 @@ import { PlaceHolderImages } from '../../lib/placeholder-images';
 import AnimatedSection from '../animated-section';
 
 const dealerPilotPlatformObjective = 'DealerPilot es una plataforma operativa para concesionarios que centraliza inventario, detecta oportunidades de publicación, coordina publicaciones en Facebook Marketplace, mejora fotos con IA y asiste conversaciones con compradores. Su objetivo es reducir trabajo manual, acelerar la salida de vehículos al mercado y dar seguimiento comercial desde un dashboard conectado al backend y a extensiones Chrome.';
+const dealerPilotPageUrl = 'https://dealerpilot-para-dealers.pixelmediacolombia.chatgpt.site/';
 
 const automationSlides = [
   {
@@ -130,15 +131,14 @@ const dealerPilotSlides = [
 const projectsData = [
   {
     title: 'Dealer Pilot AI',
-    description: 'Me integré a DealerPilot, una plataforma existente para automatizar operaciones de concesionarios: inventario, publicación en Facebook Marketplace, respuestas asistidas por IA, mejora de fotos, configuración de marca y seguimiento operativo desde un dashboard.',
+    description: 'DealerPilot no fue una idea original mía: me integré a una plataforma existente y la modifiqué para automatizar operaciones de concesionarios, incluyendo inventario, publicación en Facebook Marketplace, respuestas asistidas por IA, mejora de fotos, configuración de marca y seguimiento operativo desde un dashboard.',
     platformObjective: dealerPilotPlatformObjective,
     role: 'Software Developer & AI Automation Specialist',
-    roleSubtitle: 'Refactorización técnica, arquitectura, automatización IA y estabilización de flujos existentes.',
+    roleSubtitle: 'Mi aporte: refactorización técnica, arquitectura, automatización IA y estabilización de flujos existentes.',
     stack: ['Python', 'Chrome Extensions', 'OpenAI API', 'Meta API'],
-    link: '#contact',
-    image: PlaceHolderImages.find(img => img.id === 'project-ghl-automation'),
-    hasCarousel: true,
-    carouselSlides: dealerPilotSlides,
+    link: dealerPilotPageUrl,
+    image: undefined,
+    hasCarousel: false,
     featured: true,
   },
   {
@@ -312,7 +312,29 @@ const Projects = () => {
                 ) : (
                   <>
                     <CardHeader className="p-0">
-                      {project.image && (
+                      {project.platformObjective ? (
+                        <div className="relative flex min-h-[260px] flex-col justify-between overflow-hidden bg-secondary/20 p-6 md:p-8">
+                          <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-primary/10 blur-3xl" />
+                          <div className="relative space-y-5">
+                            <div className="flex items-center gap-3 text-primary">
+                              <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-primary/20 bg-primary/10">
+                                <ExternalLink className="h-5 w-5" />
+                              </div>
+                              <span className="text-sm font-medium">Vista completa del producto</span>
+                            </div>
+                            <div className="space-y-2">
+                              <h3 className="text-2xl font-bold tracking-tight">Conoce DealerPilot</h3>
+                              <p className="max-w-lg text-sm leading-relaxed text-muted-foreground">
+                                Explora la página dedicada para entender cómo DealerPilot organiza y automatiza la operación diaria de un concesionario.
+                              </p>
+                            </div>
+                          </div>
+                          <div className="relative mt-6 flex items-center gap-2 text-xs text-muted-foreground">
+                            <span className="h-2 w-2 rounded-full bg-primary" />
+                            Inventario · Marketplace · IA · seguimiento comercial
+                          </div>
+                        </div>
+                      ) : project.image && (
                         <div className="aspect-video relative overflow-hidden group bg-secondary/10">
                           <Image
                             src={project.image.imageUrl}
@@ -346,6 +368,12 @@ const Projects = () => {
                       </div>
                       <CardContent className="p-0 pt-2 flex-grow">
                         <p className="text-foreground/80 leading-relaxed">{project.description}</p>
+                        {project.platformObjective && (
+                          <div className="mt-5 space-y-2 rounded-xl border border-border/50 bg-secondary/20 p-4">
+                            <h4 className="text-sm font-semibold text-foreground">Qué hace DealerPilot</h4>
+                            <p className="text-sm leading-relaxed text-muted-foreground">{project.platformObjective}</p>
+                          </div>
+                        )}
                         {project.roleSubtitle && (
                           <p className="mt-3 text-xs leading-relaxed text-muted-foreground">{project.roleSubtitle}</p>
                         )}
@@ -371,7 +399,7 @@ const Projects = () => {
                             ) : (
                               <>
                                 <ExternalLink className="mr-2 h-4 w-4 group-hover:text-primary transition-colors" />
-                                {project.link.startsWith('#') ? 'Contactar' : 'Visitar Sitio'}
+                                {project.platformObjective ? 'Abrir página de DealerPilot' : project.link.startsWith('#') ? 'Contactar' : 'Visitar Sitio'}
                               </>
                             )}
                           </Link>
