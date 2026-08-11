@@ -128,6 +128,15 @@ const dealerPilotSlides = [
   }
 ];
 
+const dealerPilotLinkSlides = [
+  {
+    image: '',
+    title: 'DealerPilot para dealers',
+    description: 'Conoce para qué sirve DealerPilot y cómo ayuda a los concesionarios a organizar inventario, publicaciones, fotos con IA y conversaciones con compradores.',
+    externalUrl: dealerPilotPageUrl,
+  }
+];
+
 const projectsData = [
   {
     title: 'Dealer Pilot AI',
@@ -138,7 +147,8 @@ const projectsData = [
     stack: ['Python', 'Chrome Extensions', 'OpenAI API', 'Meta API'],
     link: dealerPilotPageUrl,
     image: undefined,
-    hasCarousel: false,
+    hasCarousel: true,
+    carouselSlides: dealerPilotLinkSlides,
     featured: true,
   },
   {
@@ -189,7 +199,7 @@ const projectsData = [
 ];
 
 const Projects = () => {
-  const [selectedImage, setSelectedImage] = useState<{ image: string; title: string; description: string; context?: string; platformObjective?: string } | null>(null);
+  const [selectedImage, setSelectedImage] = useState<{ image: string; title: string; description: string; context?: string; platformObjective?: string; externalUrl?: string } | null>(null);
 
   return (
     <section id="projects" className="w-full py-20 md:py-28 lg:py-32 bg-secondary/10">
@@ -214,23 +224,40 @@ const Projects = () => {
                             {project.carouselSlides.map((slide, index) => (
                               <CarouselItem key={index}>
                                 <div className="flex flex-col gap-4">
-                                  <div
-                                    className="aspect-video relative overflow-hidden rounded-lg bg-secondary/20 cursor-pointer group shadow-sm border border-border/50"
-                                    onClick={() => setSelectedImage({ ...slide, platformObjective: project.platformObjective })}
-                                  >
-                                    <Image
-                                      src={slide.image}
-                                      alt={slide.title}
-                                      fill
-                                      className="object-contain transition-transform duration-500 group-hover:scale-105"
-                                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                    />
-                                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
-                                      <div className="bg-background/90 text-foreground px-4 py-2 rounded-full opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-2 text-sm font-medium">
-                                        <Maximize2 className="w-4 h-4" /> Ampliar
+                                  {'externalUrl' in slide ? (
+                                    <button
+                                      type="button"
+                                      className="aspect-video relative overflow-hidden rounded-lg bg-secondary/20 cursor-pointer group shadow-sm border border-border/50 w-full"
+                                      onClick={() => setSelectedImage({ ...slide, platformObjective: project.platformObjective })}
+                                    >
+                                      <div className="absolute inset-0 bg-primary/5 transition-colors duration-300 group-hover:bg-primary/10" />
+                                      <div className="relative flex h-full flex-col items-center justify-center gap-3 text-center">
+                                        <div className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-primary transition-transform duration-200 group-hover:scale-105">
+                                          <ExternalLink className="h-5 w-5" />
+                                        </div>
+                                        <span className="text-sm font-medium text-foreground">Abrir detalle de DealerPilot</span>
+                                        <span className="text-xs text-muted-foreground">Conoce para qué sirve</span>
+                                      </div>
+                                    </button>
+                                  ) : (
+                                    <div
+                                      className="aspect-video relative overflow-hidden rounded-lg bg-secondary/20 cursor-pointer group shadow-sm border border-border/50"
+                                      onClick={() => setSelectedImage({ ...slide, platformObjective: project.platformObjective })}
+                                    >
+                                      <Image
+                                        src={slide.image}
+                                        alt={slide.title}
+                                        fill
+                                        className="object-contain transition-transform duration-500 group-hover:scale-105"
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                      />
+                                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                                        <div className="bg-background/90 text-foreground px-4 py-2 rounded-full opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-2 text-sm font-medium">
+                                          <Maximize2 className="w-4 h-4" /> Ampliar
+                                        </div>
                                       </div>
                                     </div>
-                                  </div>
+                                  )}
                                   <div className="text-center space-y-3 px-1">
                                     <h4 className="font-semibold text-lg leading-tight">{slide.title}</h4>
                                     <Button
@@ -424,21 +451,45 @@ const Projects = () => {
                 className="flex flex-col lg:flex-row min-h-[50vh] max-h-[90vh]"
               >
                 <div className="relative w-full lg:w-2/3 min-h-[300px] lg:h-auto bg-muted/30 flex items-center justify-center p-6">
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.4 }}
-                    className="relative w-full h-full"
-                  >
-                    <Image
-                      src={selectedImage.image}
-                      alt={selectedImage.title}
-                      fill
-                      className="object-contain drop-shadow-xl"
-                      unoptimized={true}
-                      priority
-                    />
-                  </motion.div>
+                  {selectedImage.externalUrl ? (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4 }}
+                      className="flex h-full min-h-[300px] w-full flex-col items-center justify-center gap-5 rounded-2xl border border-primary/20 bg-primary/5 p-8 text-center"
+                    >
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-primary">
+                        <ExternalLink className="h-7 w-7" />
+                      </div>
+                      <div className="space-y-2">
+                        <h3 className="text-xl font-semibold text-foreground">DealerPilot para dealers</h3>
+                        <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
+                          Abre la página dedicada para conocer el producto, su utilidad y los flujos que ayudé a refactorizar.
+                        </p>
+                      </div>
+                      <Button asChild className="gap-2 rounded-full">
+                        <a href={selectedImage.externalUrl} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4" /> Abrir página de DealerPilot
+                        </a>
+                      </Button>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4 }}
+                      className="relative w-full h-full"
+                    >
+                      <Image
+                        src={selectedImage.image}
+                        alt={selectedImage.title}
+                        fill
+                        className="object-contain drop-shadow-xl"
+                        unoptimized={true}
+                        priority
+                      />
+                    </motion.div>
+                  )}
                 </div>
 
                 <div className="w-full lg:w-1/3 p-6 lg:p-10 flex flex-col bg-background/60 backdrop-blur-xl border-t lg:border-t-0 lg:border-l border-border/50 overflow-y-auto">
@@ -464,6 +515,21 @@ const Projects = () => {
                           <h5 className="font-semibold text-sm text-foreground">Qué hace DealerPilot</h5>
                           <p className="text-xs text-muted-foreground leading-relaxed">
                             {selectedImage.platformObjective}
+                          </p>
+                        </div>
+                      )}
+
+                      {selectedImage.externalUrl && (
+                        <div className="bg-primary/5 p-5 rounded-2xl border border-primary/10 space-y-3">
+                          <h5 className="font-semibold text-sm flex items-center gap-2 text-primary">
+                            <span className="relative flex h-2 w-2">
+                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                            </span>
+                            Mi aporte al proyecto
+                          </h5>
+                          <p className="text-xs text-muted-foreground leading-relaxed">
+                            DealerPilot ya era una plataforma existente. Me integré para refactorizar módulos críticos, mejorar su mantenibilidad y estabilizar los flujos de inventario, publicación y conversaciones asistidas por IA.
                           </p>
                         </div>
                       )}
