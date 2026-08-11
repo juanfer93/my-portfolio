@@ -131,7 +131,7 @@ const dealerPilotSlides = [
 const projectsData = [
   {
     title: 'Dealer Pilot AI',
-    description: 'DealerPilot no fue una idea original mía: me integré a una plataforma existente y la modifiqué para automatizar operaciones de concesionarios, incluyendo inventario, publicación en Facebook Marketplace, respuestas asistidas por IA, mejora de fotos, configuración de marca y seguimiento operativo desde un dashboard.',
+    description: 'DealerPilot no fue una idea original mía: me integré a una plataforma existente y la modifiqué para centralizar inventario, publicaciones en Facebook Marketplace, mejora de fotos con IA y seguimiento de compradores.',
     platformObjective: dealerPilotPlatformObjective,
     role: 'Software Developer & AI Automation Specialist',
     roleSubtitle: 'Mi aporte: refactorización técnica, arquitectura, automatización IA y estabilización de flujos existentes.',
@@ -313,27 +313,22 @@ const Projects = () => {
                   <>
                     <CardHeader className="p-0">
                       {project.platformObjective ? (
-                        <div className="relative flex min-h-[260px] flex-col justify-between overflow-hidden bg-secondary/20 p-6 md:p-8">
-                          <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-primary/10 blur-3xl" />
-                          <div className="relative space-y-5">
-                            <div className="flex items-center gap-3 text-primary">
-                              <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-primary/20 bg-primary/10">
-                                <ExternalLink className="h-5 w-5" />
-                              </div>
-                              <span className="text-sm font-medium">Vista completa del producto</span>
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="Abrir la página de DealerPilot"
+                          className="group relative flex aspect-video items-center justify-center overflow-hidden bg-secondary/20"
+                        >
+                          <div className="absolute inset-0 bg-primary/5 transition-colors duration-200 group-hover:bg-primary/10" />
+                          <div className="relative flex flex-col items-center gap-3 text-center">
+                            <div className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-primary transition-transform duration-200 group-hover:scale-105">
+                              <ExternalLink className="h-5 w-5" />
                             </div>
-                            <div className="space-y-2">
-                              <h3 className="text-2xl font-bold tracking-tight">Conoce DealerPilot</h3>
-                              <p className="max-w-lg text-sm leading-relaxed text-muted-foreground">
-                                Explora la página dedicada para entender cómo DealerPilot organiza y automatiza la operación diaria de un concesionario.
-                              </p>
-                            </div>
+                            <span className="text-sm font-medium text-foreground">Abrir página de DealerPilot</span>
+                            <span className="text-xs text-muted-foreground">Conoce el producto y cómo funciona</span>
                           </div>
-                          <div className="relative mt-6 flex items-center gap-2 text-xs text-muted-foreground">
-                            <span className="h-2 w-2 rounded-full bg-primary" />
-                            Inventario · Marketplace · IA · seguimiento comercial
-                          </div>
-                        </div>
+                        </a>
                       ) : project.image && (
                         <div className="aspect-video relative overflow-hidden group bg-secondary/10">
                           <Image
@@ -369,10 +364,13 @@ const Projects = () => {
                       <CardContent className="p-0 pt-2 flex-grow">
                         <p className="text-foreground/80 leading-relaxed">{project.description}</p>
                         {project.platformObjective && (
-                          <div className="mt-5 space-y-2 rounded-xl border border-border/50 bg-secondary/20 p-4">
-                            <h4 className="text-sm font-semibold text-foreground">Qué hace DealerPilot</h4>
-                            <p className="text-sm leading-relaxed text-muted-foreground">{project.platformObjective}</p>
-                          </div>
+                          <details className="group mt-4 rounded-lg border border-border/50 bg-secondary/20 px-4 py-3">
+                            <summary className="cursor-pointer list-none text-sm font-semibold text-foreground">
+                              Qué hace DealerPilot
+                              <span className="ml-2 text-xs font-normal text-muted-foreground group-open:hidden">Ver detalles</span>
+                            </summary>
+                            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{project.platformObjective}</p>
+                          </details>
                         )}
                         {project.roleSubtitle && (
                           <p className="mt-3 text-xs leading-relaxed text-muted-foreground">{project.roleSubtitle}</p>
