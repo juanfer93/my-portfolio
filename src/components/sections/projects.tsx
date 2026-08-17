@@ -13,8 +13,8 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { PlaceHolderImages } from '../../lib/placeholder-images';
 import AnimatedSection from '../animated-section';
 
-const dealerPilotPlatformObjective = 'DealerPilot es una plataforma operativa para concesionarios que centraliza inventario, detecta oportunidades de publicación, coordina publicaciones en Facebook Marketplace, mejora fotos con IA y asiste conversaciones con compradores. Su objetivo es reducir trabajo manual, acelerar la salida de vehículos al mercado y dar seguimiento comercial desde un dashboard conectado al backend y a extensiones Chrome.';
-const dealerPilotPageUrl = 'https://dealerpilot-para-dealers.pixelmediacolombia.chatgpt.site/';
+const dealerPilotPlatformObjective = 'DealerPilot es una plataforma operativa para concesionarios independientes que sincroniza el inventario, redacta y publica vehículos automáticamente en Facebook Marketplace, mejora fotos con IA y responde a compradores en inglés y español 24/7.';
+const dealerPilotPageUrl = 'https://1987dealerpilot.com/';
 
 const automationSlides = [
   {
@@ -140,7 +140,7 @@ const dealerPilotLinkSlides = [
 const projectsData = [
   {
     title: 'Dealer Pilot AI',
-    description: 'DealerPilot no fue una idea original mía: me integré a una plataforma existente y la modifiqué para centralizar inventario, publicaciones en Facebook Marketplace, mejora de fotos con IA y seguimiento de compradores.',
+    description: 'DealerPilot no fue una idea original mía: me integré a una plataforma existente, refactoricé y mejoré su página y sus flujos para sincronizar inventario, redactar y publicar vehículos automáticamente en Facebook Marketplace, mejorar fotos con IA y responder a compradores en inglés y español 24/7.',
     platformObjective: dealerPilotPlatformObjective,
     role: 'Software Developer & AI Automation Specialist',
     roleSubtitle: 'Mi aporte: refactorización técnica, arquitectura, automatización IA y estabilización de flujos existentes.',
