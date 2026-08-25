@@ -87,10 +87,6 @@
   animation-delay: 740ms;
 }
 
-.logo-mark__path--p {
-  stroke-width: 7;
-}
-
 .logo-mark--animated .logo-mark__path--i {
   animation-delay: 870ms;
 }
