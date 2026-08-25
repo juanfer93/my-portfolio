@@ -1,18 +1,14 @@
 import Link from 'next/link';
 import { Github } from 'lucide-react';
-import Logo from '../logo';
 
 const Footer = () => {
   return (
     <footer className="w-full border-t border-border/40 bg-background">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 items-center gap-8 px-4 py-8 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-2 justify-center md:justify-start">
-          <Logo />
-        </div>
-        <p className="text-sm text-foreground/60 text-center">
+      <div className="container relative mx-auto flex flex-col items-center justify-center gap-4 px-4 py-8 sm:px-6 lg:px-8 md:min-h-24">
+        <p className="text-center text-sm text-foreground/60">
           &copy; {new Date().getFullYear()} Juan Fernando Pacheco Ibañez. <br className="sm:hidden" />Todos los derechos reservados.
         </p>
-        <div className="flex items-center justify-center md:justify-end gap-4">
+        <div className="flex items-center justify-center gap-4 md:absolute md:right-6 lg:right-8">
           <Link href="https://github.com/juanfer93" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
             <Github className="h-6 w-6 text-foreground/60 transition-colors hover:text-primary" />
           </Link>

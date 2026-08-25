@@ -29,6 +29,12 @@ const Header = () => {
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${isScrolled ? 'border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60' : 'bg-transparent'}`}
     >
       <div className="container relative mx-auto flex h-20 items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div className="absolute left-4 hidden items-center gap-3 sm:left-6 md:flex lg:left-8" aria-hidden="true">
+          <span className="relative block h-1.5 w-1.5 rounded-full bg-primary/70 shadow-[0_0_8px_hsl(var(--primary)/0.45)]" />
+          <span className="h-px w-8 bg-primary/35" />
+          <span className="font-mono text-[10px] tracking-[0.18em] text-foreground/40">JFPI / PORTFOLIO</span>
+        </div>
+
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
