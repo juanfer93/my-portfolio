@@ -38,3 +38,96 @@
     scroll-behavior: smooth;
   }
 }
+
+.logo-mark {
+  display: block;
+  overflow: visible;
+  color: hsl(var(--primary));
+  transition: filter 120ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.logo-mark:hover {
+  filter: drop-shadow(0 0 8px hsl(var(--primary) / 0.35));
+}
+
+.logo-mark__path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 5.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 2px hsl(var(--primary) / 0.65))
+    drop-shadow(0 0 7px hsl(var(--primary) / 0.35));
+}
+
+.logo-mark--animated .logo-mark__path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: logo-mark-draw 750ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.logo-mark--animated .logo-mark__path--j {
+  animation-delay: 0ms;
+}
+
+.logo-mark--animated .logo-mark__path--j-terminal {
+  animation-delay: 65ms;
+}
+
+.logo-mark--animated .logo-mark__path--f {
+  animation-delay: 110ms;
+}
+
+.logo-mark--animated .logo-mark__path--f-cross {
+  animation-delay: 175ms;
+}
+
+.logo-mark--animated .logo-mark__path--p {
+  animation-delay: 220ms;
+}
+
+.logo-mark--animated .logo-mark__path--i {
+  animation-delay: 310ms;
+}
+
+.logo-mark--animated .logo-mark__path--i-terminal {
+  animation-delay: 375ms;
+}
+
+.logo-mark--animated {
+  animation: logo-mark-glow 520ms 850ms cubic-bezier(0.2, 0, 0, 1) both;
+}
+
+@keyframes logo-mark-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes logo-mark-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 hsl(var(--primary) / 0));
+  }
+
+  45% {
+    filter: drop-shadow(0 0 12px hsl(var(--primary) / 0.72));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .logo-mark,
+  .logo-mark--animated,
+  .logo-mark--animated .logo-mark__path {
+    animation: none;
+    transition-duration: 0.01ms;
+  }
+
+  .logo-mark--animated .logo-mark__path {
+    stroke-dashoffset: 0;
+  }
+}

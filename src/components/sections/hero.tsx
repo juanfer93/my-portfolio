@@ -3,6 +3,7 @@ import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import { ArrowDown } from 'lucide-react';
 import AnimatedSection from '../animated-section';
+import Logo from '../logo';
 
 const Hero = () => {
   return (
@@ -11,6 +12,9 @@ const Hero = () => {
       <AnimatedSection className="w-full">
         <div className="container relative mx-auto flex flex-col items-center px-4 py-20 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
+            <div className="mb-10 flex justify-center" aria-label="Presentación del logotipo">
+              <Logo animated className="h-auto w-[min(80vw,28rem)] sm:w-[min(58vw,34rem)]" />
+            </div>
             <div className="flex justify-center gap-2 mb-6">
               <Badge variant="outline" className="border-primary/50 text-primary py-1 px-3 rounded-full">Backend</Badge>
               <Badge variant="outline" className="border-primary/50 text-primary py-1 px-3 rounded-full">Frontend</Badge>
