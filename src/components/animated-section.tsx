@@ -6,9 +6,10 @@ import { motion, useInView } from 'framer-motion';
 type AnimatedSectionProps = {
   children: React.ReactNode;
   className?: string;
+  onVisible?: () => void;
 };
 
-const AnimatedSection = ({ children, className }: AnimatedSectionProps) => {
+const AnimatedSection = ({ children, className, onVisible }: AnimatedSectionProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
@@ -24,6 +25,9 @@ const AnimatedSection = ({ children, className }: AnimatedSectionProps) => {
       animate={isInView ? 'visible' : 'hidden'}
       variants={variants}
       transition={{ duration: 0.6, ease: 'easeOut' }}
+      onAnimationComplete={() => {
+        if (isInView) onVisible?.();
+      }}
       className={className}
     >
       {children}

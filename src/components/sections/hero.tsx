@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { useState } from 'react';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import { ArrowDown } from 'lucide-react';
@@ -6,14 +9,16 @@ import AnimatedSection from '../animated-section';
 import Logo from '../logo';
 
 const Hero = () => {
+  const [heroSettled, setHeroSettled] = useState(false);
+
   return (
     <section id="home" className="relative w-full min-h-screen flex items-center justify-center text-center overflow-hidden">
       <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-      <AnimatedSection className="w-full">
+      <AnimatedSection className="w-full" onVisible={() => setHeroSettled(true)}>
         <div className="container relative mx-auto flex flex-col items-center px-4 py-20 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
             <div className="mb-14 flex min-h-[22rem] items-center justify-center py-12 sm:mb-16 sm:min-h-[26rem] sm:py-16" aria-label="Presentación del logotipo">
-              <Logo animated className="h-auto w-[min(74vw,35rem)] sm:w-[min(58vw,35rem)]" />
+              <Logo animated={heroSettled} className="h-auto w-[min(74vw,35rem)] sm:w-[min(58vw,35rem)]" />
             </div>
             <div className="flex justify-center gap-2 mb-6">
               <Badge variant="outline" className="border-primary/50 text-primary py-1 px-3 rounded-full">Backend</Badge>
