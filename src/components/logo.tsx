@@ -15,16 +15,16 @@ const Logo = ({ className, animated = false }: LogoProps) => {
       focusable="false"
     >
       <g className="logo-mark__art" transform="scale(0.64 1)">
-        <path className="logo-mark__path logo-mark__path--j" d="M 20 73 H 111 C 132 73 143 62 143 43 V 20" />
-        <ellipse className="logo-mark__path logo-mark__path--j-terminal" cx="20" cy="73" rx="10.16" ry="6.5" />
+        <path className="logo-mark__path logo-mark__path--j" d="M 20 73 H 76 C 90 73 100 62 100 43 V 20" />
+        <ellipse className="logo-mark__path logo-mark__path--j-terminal" cx="20" cy="73" rx="14.06" ry="9" />
 
-        <path className="logo-mark__path logo-mark__path--f" d="M 178 73 V 30 C 178 24 183 20 189 20 H 260" />
+        <path className="logo-mark__path logo-mark__path--f" d="M 178 73 V 30 C 178 24 186 20 198 20 H 260" />
         <path className="logo-mark__path logo-mark__path--f-cross" d="M 193 51 H 245" />
 
-        <path className="logo-mark__path logo-mark__path--p" d="M 292 73 V 20 H 353 C 373 20 383 26 383 34 C 383 42 373 47 353 47 H 292" />
+        <path className="logo-mark__path logo-mark__path--p" d="M 292 73 V 20 H 353 C 372 20 380 26 380 34 C 380 42 372 47 353 47 H 292" />
 
         <path className="logo-mark__path logo-mark__path--i" d="M 414 73 V 20" />
-        <ellipse className="logo-mark__path logo-mark__path--i-terminal" cx="414" cy="11" rx="10.16" ry="6.5" />
+        <ellipse className="logo-mark__path logo-mark__path--i-terminal" cx="414" cy="11" rx="14.06" ry="9" />
       </g>
     </svg>
   );
