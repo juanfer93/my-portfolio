@@ -64,39 +64,39 @@
 .logo-mark--animated .logo-mark__path {
   stroke-dasharray: 500;
   stroke-dashoffset: 500;
-  animation: logo-mark-draw 1500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: logo-mark-draw 1800ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .logo-mark--animated .logo-mark__path--j {
-  animation-delay: 350ms;
+  animation-delay: 400ms;
 }
 
 .logo-mark--animated .logo-mark__path--j-terminal {
-  animation-delay: 440ms;
+  animation-delay: 500ms;
 }
 
 .logo-mark--animated .logo-mark__path--f {
-  animation-delay: 540ms;
+  animation-delay: 620ms;
 }
 
 .logo-mark--animated .logo-mark__path--f-cross {
-  animation-delay: 640ms;
-}
-
-.logo-mark--animated .logo-mark__path--p {
   animation-delay: 740ms;
 }
 
-.logo-mark--animated .logo-mark__path--i {
-  animation-delay: 870ms;
+.logo-mark--animated .logo-mark__path--p {
+  animation-delay: 860ms;
 }
 
-.logo-mark--animated .logo-mark__path--i-terminal {
+.logo-mark--animated .logo-mark__path--i {
   animation-delay: 1000ms;
 }
 
+.logo-mark--animated .logo-mark__path--i-terminal {
+  animation-delay: 1140ms;
+}
+
 .logo-mark--animated {
-  animation: logo-mark-glow 800ms 2750ms cubic-bezier(0.2, 0, 0, 1) both;
+  animation: logo-mark-glow 900ms 3300ms cubic-bezier(0.2, 0, 0, 1) both;
 }
 
 @keyframes logo-mark-draw {
