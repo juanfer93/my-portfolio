@@ -64,7 +64,7 @@
 .logo-mark--animated .logo-mark__path {
   stroke-dasharray: 500;
   stroke-dashoffset: 500;
-  animation: logo-mark-draw 1300ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: logo-mark-draw 1500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .logo-mark--animated .logo-mark__path--j {
@@ -96,7 +96,7 @@
 }
 
 .logo-mark--animated {
-  animation: logo-mark-glow 650ms 2500ms cubic-bezier(0.2, 0, 0, 1) both;
+  animation: logo-mark-glow 800ms 2750ms cubic-bezier(0.2, 0, 0, 1) both;
 }
 
 @keyframes logo-mark-draw {
