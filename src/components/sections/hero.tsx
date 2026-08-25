@@ -12,7 +12,7 @@ const Hero = () => {
       <AnimatedSection className="w-full">
         <div className="container relative mx-auto flex flex-col items-center px-4 py-20 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
-            <div className="mb-10 flex justify-center" aria-label="Presentación del logotipo">
+            <div className="mb-14 flex min-h-[22rem] items-center justify-center py-12 sm:mb-16 sm:min-h-[26rem] sm:py-16" aria-label="Presentación del logotipo">
               <Logo animated className="h-auto w-[min(92vw,42rem)] sm:w-[min(72vw,48rem)]" />
             </div>
             <div className="flex justify-center gap-2 mb-6">

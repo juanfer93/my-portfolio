@@ -8,6 +8,10 @@ export const metadata: Metadata = {
   keywords: ['Full Stack Developer', 'AI Automation', 'TypeScript', 'Python', 'NestJS', 'React', 'n8n', 'GoHighLevel', 'Juan Fernando Pacheco Ibañez'],
   authors: [{ name: 'Juan Fernando Pacheco Ibañez' }],
   creator: 'Juan Fernando Pacheco Ibañez',
+  icons: {
+    icon: [{ url: '/jfpi-logo.svg', type: 'image/svg+xml' }],
+    shortcut: ['/jfpi-logo.svg'],
+  },
 };
 
 export default function RootLayout({
@@ -18,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="es" className="dark">
       <head>
+        <link rel="icon" href="/jfpi-logo.svg" type="image/svg+xml" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

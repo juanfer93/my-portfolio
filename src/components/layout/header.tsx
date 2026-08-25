@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
-import Logo from '../logo';
 import { Button } from '../ui/button'; 
 
 const navLinks = [
@@ -29,11 +28,7 @@ const Header = () => {
     <header 
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${isScrolled ? 'border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60' : 'bg-transparent'}`}
     >
-      <div className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="#home" className="flex items-center gap-2">
-          <Logo className="w-24 md:w-28" />
-        </Link>
-
+      <div className="container relative mx-auto flex h-20 items-center justify-center px-4 sm:px-6 lg:px-8">
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
@@ -47,7 +42,7 @@ const Header = () => {
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
+        <div className="absolute right-4 flex items-center gap-4 sm:right-6 lg:right-8">
           <Button asChild className="hidden md:flex rounded-full">
             <Link href="#contact">Hablemos</Link>
           </Button>
