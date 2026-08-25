@@ -16,15 +16,15 @@ const Logo = ({ className, animated = false }: LogoProps) => {
     >
       <g className="logo-mark__art" transform="scale(0.64 1)">
         <path className="logo-mark__path logo-mark__path--j" d="M 20 73 H 111 C 132 73 143 62 143 43 V 20" />
-        <ellipse className="logo-mark__path logo-mark__path--j-terminal" cx="20" cy="73" rx="15.625" ry="10" />
+        <ellipse className="logo-mark__path logo-mark__path--j-terminal" cx="20" cy="73" rx="11.72" ry="7.5" />
 
-        <path className="logo-mark__path logo-mark__path--f" d="M 178 73 V 20 H 260" />
+        <path className="logo-mark__path logo-mark__path--f" d="M 178 73 V 30 C 178 24 183 20 189 20 H 260" />
         <path className="logo-mark__path logo-mark__path--f-cross" d="M 193 51 H 245" />
 
-        <path className="logo-mark__path logo-mark__path--p" d="M 292 73 V 20 H 353 C 373 20 383 29 383 40 C 383 51 373 57 353 57 H 292" />
+        <path className="logo-mark__path logo-mark__path--p" d="M 292 73 V 20 H 353 C 376 20 386 29 386 40 C 386 52 376 60 353 60 H 292" />
 
         <path className="logo-mark__path logo-mark__path--i" d="M 414 73 V 20" />
-        <ellipse className="logo-mark__path logo-mark__path--i-terminal" cx="414" cy="11" rx="15.625" ry="10" />
+        <ellipse className="logo-mark__path logo-mark__path--i-terminal" cx="414" cy="11" rx="11.72" ry="7.5" />
       </g>
     </svg>
   );
