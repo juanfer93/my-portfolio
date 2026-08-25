@@ -46,6 +46,10 @@
   transition: filter 120ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.logo-mark--pending {
+  opacity: 0;
+}
+
 .logo-mark:hover {
   filter: drop-shadow(0 0 8px hsl(var(--primary) / 0.35));
 }
@@ -96,7 +100,15 @@
 }
 
 .logo-mark--animated {
-  animation: logo-mark-glow 900ms 3300ms cubic-bezier(0.2, 0, 0, 1) both;
+  animation:
+    logo-mark-reveal 1ms 400ms both,
+    logo-mark-glow 900ms 3300ms cubic-bezier(0.2, 0, 0, 1) both;
+}
+
+@keyframes logo-mark-reveal {
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes logo-mark-draw {
@@ -122,9 +134,11 @@
   }
 
   .logo-mark,
+  .logo-mark--pending,
   .logo-mark--animated,
   .logo-mark--animated .logo-mark__path {
     animation: none;
+    opacity: 1;
     transition-duration: 0.01ms;
   }
 
