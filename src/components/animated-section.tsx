@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 type AnimatedSectionProps = {
@@ -12,6 +12,19 @@ type AnimatedSectionProps = {
 const AnimatedSection = ({ children, className, onVisible }: AnimatedSectionProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const onVisibleRef = useRef(onVisible);
+
+  onVisibleRef.current = onVisible;
+
+  useEffect(() => {
+    if (!isInView || !onVisibleRef.current) return;
+
+    const timer = window.setTimeout(() => {
+      onVisibleRef.current?.();
+    }, 650);
+
+    return () => window.clearTimeout(timer);
+  }, [isInView]);
 
   const variants = {
     hidden: { opacity: 0, y: 50 },
@@ -25,9 +38,6 @@ const AnimatedSection = ({ children, className, onVisible }: AnimatedSectionProp
       animate={isInView ? 'visible' : 'hidden'}
       variants={variants}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      onAnimationComplete={() => {
-        if (isInView) onVisible?.();
-      }}
       className={className}
     >
       {children}
