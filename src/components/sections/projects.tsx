@@ -169,6 +169,7 @@ const projectsData = [
     roleSubtitle: 'Mi aporte: refactorización técnica, arquitectura, automatización IA y estabilización de flujos existentes.',
     stack: ['Python', 'Chrome Extensions', 'OpenAI API', 'Meta API'],
     link: dealerPilotPageUrl,
+    logo: '/projects/dealerpilot-ai-operator/logo.png',
     image: undefined,
     hasCarousel: true,
     carouselSlides: dealerPilotLinkSlides,
@@ -256,7 +257,7 @@ const Projects = () => {
                                       <div className="absolute inset-0 bg-primary/5 transition-colors duration-300 group-hover:bg-primary/10" />
                                       <div className="relative flex h-full flex-col items-center justify-center gap-3 text-center">
                                         {project.logo ? (
-                                          <div className="relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl border border-primary/20 bg-white p-1 shadow-sm transition-transform duration-200 group-hover:scale-105">
+                                          <div className={`relative flex h-14 items-center justify-center overflow-hidden border border-primary/20 p-1 shadow-sm transition-transform duration-200 group-hover:scale-105 ${project.title === 'Dealer Pilot AI' ? 'w-52 rounded-lg bg-background' : 'w-14 rounded-2xl bg-white'}`}>
                                             <Image src={project.logo} alt={`${project.title} logo`} fill className="object-contain p-1" />
                                           </div>
                                         ) : (
@@ -310,7 +311,7 @@ const Projects = () => {
                     <div className="p-6 pt-2 mt-auto">
                       <div className="flex items-center gap-3 mb-2">
                         {project.logo && (
-                          <div className="relative w-8 h-8 rounded-full overflow-hidden shrink-0 border border-border/50 bg-white">
+                          <div className={`relative h-8 overflow-hidden shrink-0 border border-border/50 ${project.title === 'Dealer Pilot AI' ? 'w-24 rounded-md bg-background' : 'w-8 rounded-full bg-white'}`}>
                             <Image src={project.logo} alt={`${project.title} logo`} fill className="object-contain" />
                           </div>
                         )}
@@ -488,7 +489,7 @@ const Projects = () => {
                       className="flex h-full min-h-[300px] w-full flex-col items-center justify-center gap-5 rounded-2xl border border-primary/20 bg-primary/5 p-8 text-center"
                     >
                       {selectedImage.projectLogo ? (
-                        <div className="relative flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl border border-primary/20 bg-white p-1 shadow-sm">
+                        <div className={`relative flex h-16 items-center justify-center overflow-hidden border border-primary/20 p-1 shadow-sm ${selectedImage.projectTitle === 'Dealer Pilot AI' ? 'w-64 rounded-lg bg-background' : 'w-16 rounded-2xl bg-white'}`}>
                           <Image src={selectedImage.projectLogo} alt={`${selectedImage.projectTitle ?? 'Proyecto'} logo`} fill className="object-contain p-1" />
                         </div>
                       ) : (
