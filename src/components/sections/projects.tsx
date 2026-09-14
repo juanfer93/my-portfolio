@@ -15,6 +15,8 @@ import AnimatedSection from '../animated-section';
 
 const dealerPilotPlatformObjective = 'DealerPilot es una plataforma operativa para concesionarios independientes que sincroniza el inventario, redacta y publica vehículos automáticamente en Facebook Marketplace, mejora fotos con IA y responde a compradores en inglés y español 24/7.';
 const dealerPilotPageUrl = 'https://1987dealerpilot.com/';
+const dealerAdminPlatformObjective = 'dealerADMIN recibe mensajes de GHL mediante webhooks firmados, guarda y deduplica cada conversación, normaliza los datos, enruta el lead al dealer correcto y lo deja en una cola operativa auditable.';
+const dealerAdminPageUrl = 'https://dealeradmin-api-eight.vercel.app/';
 
 const automationSlides = [
   {
@@ -137,7 +139,28 @@ const dealerPilotLinkSlides = [
   }
 ];
 
+const dealerAdminLinkSlides = [
+  {
+    image: '',
+    title: 'Cómo funciona dealerADMIN',
+    description: 'Una vista general del flujo: GHL captura la respuesta del cliente, dealerADMIN procesa el evento y el operador recibe la siguiente acción clara para entregar el lead correcto.',
+    externalUrl: dealerAdminPageUrl,
+  }
+];
+
 const projectsData = [
+  {
+    title: 'dealerADMIN',
+    description: 'Aplicación operativa para recibir, cualificar y enrutar leads desde GoHighLevel hasta la cola del dealer correcto, con memoria en base de datos, deduplicación y trazabilidad.',
+    platformObjective: dealerAdminPlatformObjective,
+    role: 'Lead Routing & Operations Platform',
+    roleSubtitle: 'Una operación auditable para que cada conversación llegue al dealer correcto con la siguiente acción clara.',
+    stack: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeScript', 'HMAC Webhooks'],
+    link: dealerAdminPageUrl,
+    logo: '/projects/dealeradmin/logo.svg',
+    hasCarousel: true,
+    carouselSlides: dealerAdminLinkSlides,
+  },
   {
     title: 'Dealer Pilot AI',
     description: 'DealerPilot no fue una idea original mía: me integré a una plataforma existente, refactoricé y mejoré su página y sus flujos para sincronizar inventario, redactar y publicar vehículos automáticamente en Facebook Marketplace, mejorar fotos con IA y responder a compradores en inglés y español 24/7.',
@@ -199,7 +222,7 @@ const projectsData = [
 ];
 
 const Projects = () => {
-  const [selectedImage, setSelectedImage] = useState<{ image: string; title: string; description: string; context?: string; platformObjective?: string; externalUrl?: string } | null>(null);
+  const [selectedImage, setSelectedImage] = useState<{ image: string; title: string; description: string; context?: string; platformObjective?: string; externalUrl?: string; projectTitle?: string; projectLogo?: string } | null>(null);
 
   return (
     <section id="projects" className="w-full py-20 md:py-28 lg:py-32 bg-secondary/10">
@@ -227,22 +250,28 @@ const Projects = () => {
                                   {'externalUrl' in slide ? (
                                     <button
                                       type="button"
-                                      className="aspect-video relative overflow-hidden rounded-lg bg-secondary/20 cursor-pointer group shadow-sm border border-border/50 w-full"
-                                      onClick={() => setSelectedImage({ ...slide, platformObjective: project.platformObjective })}
+                                      className="aspect-video relative overflow-hidden rounded-lg bg-secondary/20 cursor-pointer group shadow-sm border border-border/50 w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                                      onClick={() => setSelectedImage({ ...slide, platformObjective: project.platformObjective, projectTitle: project.title, projectLogo: project.logo })}
                                     >
                                       <div className="absolute inset-0 bg-primary/5 transition-colors duration-300 group-hover:bg-primary/10" />
                                       <div className="relative flex h-full flex-col items-center justify-center gap-3 text-center">
-                                        <div className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-primary transition-transform duration-200 group-hover:scale-105">
-                                          <ExternalLink className="h-5 w-5" />
-                                        </div>
-                                        <span className="text-sm font-medium text-foreground">Abrir detalle de DealerPilot</span>
-                                        <span className="text-xs text-muted-foreground">Conoce para qué sirve</span>
+                                        {project.logo ? (
+                                          <div className="relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl border border-primary/20 bg-white p-1 shadow-sm transition-transform duration-200 group-hover:scale-105">
+                                            <Image src={project.logo} alt={`${project.title} logo`} fill className="object-contain p-1" />
+                                          </div>
+                                        ) : (
+                                          <div className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-primary transition-transform duration-200 group-hover:scale-105">
+                                            <ExternalLink className="h-5 w-5" />
+                                          </div>
+                                        )}
+                                        <span className="text-sm font-medium text-foreground">Abrir detalle de {project.title}</span>
+                                        <span className="text-xs text-muted-foreground">Resumen y cómo funciona</span>
                                       </div>
                                     </button>
                                   ) : (
                                     <div
                                       className="aspect-video relative overflow-hidden rounded-lg bg-secondary/20 cursor-pointer group shadow-sm border border-border/50"
-                                      onClick={() => setSelectedImage({ ...slide, platformObjective: project.platformObjective })}
+                                      onClick={() => setSelectedImage({ ...slide, platformObjective: project.platformObjective, projectTitle: project.title, projectLogo: project.logo })}
                                     >
                                       <Image
                                         src={slide.image}
@@ -264,9 +293,9 @@ const Projects = () => {
                                       variant="secondary"
                                       size="sm"
                                       className="w-full sm:w-auto gap-2"
-                                      onClick={() => setSelectedImage({ ...slide, platformObjective: project.platformObjective })}
+                                      onClick={() => setSelectedImage({ ...slide, platformObjective: project.platformObjective, projectTitle: project.title, projectLogo: project.logo })}
                                     >
-                                      <Eye className="w-4 h-4" /> Ver descripción completa
+                                      <Eye className="w-4 h-4" /> {project.title === 'dealerADMIN' ? 'Ver resumen y cómo funciona' : 'Ver descripción completa'}
                                     </Button>
                                   </div>
                                 </div>
@@ -328,7 +357,7 @@ const Projects = () => {
                             ) : (
                               <>
                                 <ExternalLink className="mr-2 h-4 w-4 group-hover:text-primary transition-colors" />
-                                {project.link.startsWith('#') ? 'Contactar' : 'Visitar Sitio'}
+                                {project.title === 'dealerADMIN' ? 'Ver landing de dealerADMIN' : project.link.startsWith('#') ? 'Contactar' : 'Visitar Sitio'}
                               </>
                             )}
                           </Link>
@@ -458,18 +487,24 @@ const Projects = () => {
                       transition={{ duration: 0.4 }}
                       className="flex h-full min-h-[300px] w-full flex-col items-center justify-center gap-5 rounded-2xl border border-primary/20 bg-primary/5 p-8 text-center"
                     >
-                      <div className="flex h-16 w-16 items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-primary">
-                        <ExternalLink className="h-7 w-7" />
-                      </div>
+                      {selectedImage.projectLogo ? (
+                        <div className="relative flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl border border-primary/20 bg-white p-1 shadow-sm">
+                          <Image src={selectedImage.projectLogo} alt={`${selectedImage.projectTitle ?? 'Proyecto'} logo`} fill className="object-contain p-1" />
+                        </div>
+                      ) : (
+                        <div className="flex h-16 w-16 items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-primary">
+                          <ExternalLink className="h-7 w-7" />
+                        </div>
+                      )}
                       <div className="space-y-2">
-                        <h3 className="text-xl font-semibold text-foreground">DealerPilot para dealers</h3>
+                        <h3 className="text-xl font-semibold text-foreground">{selectedImage.projectTitle ?? selectedImage.title}</h3>
                         <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
-                          Abre la página dedicada para conocer el producto, su utilidad y los flujos que ayudé a refactorizar.
+                          {selectedImage.description}
                         </p>
                       </div>
                       <Button asChild className="gap-2 rounded-full">
                         <a href={selectedImage.externalUrl} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4" /> Abrir página de DealerPilot
+                          <ExternalLink className="h-4 w-4" /> Abrir landing de {selectedImage.projectTitle ?? 'este proyecto'}
                         </a>
                       </Button>
                     </motion.div>
@@ -512,7 +547,7 @@ const Projects = () => {
 
                       {selectedImage.platformObjective && (
                         <div className="bg-secondary/20 p-5 rounded-2xl border border-border/50 space-y-3 mb-4">
-                          <h5 className="font-semibold text-sm text-foreground">Qué hace DealerPilot</h5>
+                          <h5 className="font-semibold text-sm text-foreground">Qué hace {selectedImage.projectTitle ?? 'este proyecto'}</h5>
                           <p className="text-xs text-muted-foreground leading-relaxed">
                             {selectedImage.platformObjective}
                           </p>
@@ -529,7 +564,9 @@ const Projects = () => {
                             Mi aporte al proyecto
                           </h5>
                           <p className="text-xs text-muted-foreground leading-relaxed">
-                            DealerPilot ya era una plataforma existente. Me integré para refactorizar módulos críticos, mejorar su mantenibilidad y estabilizar los flujos de inventario, publicación y conversaciones asistidas por IA.
+                            {selectedImage.projectTitle === 'Dealer Pilot AI'
+                              ? 'DealerPilot ya era una plataforma existente. Me integré para refactorizar módulos críticos, mejorar su mantenibilidad y estabilizar los flujos de inventario, publicación y conversaciones asistidas por IA.'
+                              : 'Diseñé y desarrollé el flujo operativo para que los eventos de conversación puedan procesarse, auditarse y entregarse al dealer correcto.'}
                           </p>
                         </div>
                       )}
