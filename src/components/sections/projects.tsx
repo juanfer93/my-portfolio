@@ -151,7 +151,7 @@ const dealerAdminLinkSlides = [
 const projectsData = [
   {
     title: 'dealerADMIN',
-    description: 'Aplicación operativa para recibir, cualificar y enrutar leads desde GoHighLevel hasta la cola del dealer correcto, con memoria en base de datos, deduplicación y trazabilidad.',
+    description: 'Automatización operativa para capturar, cualificar y enrutar leads desde GoHighLevel hasta la cola del dealer correcto, con memoria en base de datos, deduplicación y trazabilidad.',
     platformObjective: dealerAdminPlatformObjective,
     role: 'Lead Routing & Operations Platform',
     roleSubtitle: 'Una operación auditable para que cada conversación llegue al dealer correcto con la siguiente acción clara.',
