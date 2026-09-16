@@ -167,7 +167,7 @@ const projectsData = [
     platformObjective: dealerPilotPlatformObjective,
     role: 'Software Developer & AI Automation Specialist',
     roleSubtitle: 'Mi aporte: refactorización técnica, arquitectura, automatización IA y estabilización de flujos existentes.',
-    stack: ['Python', 'Chrome Extensions', 'OpenAI API', 'Meta API'],
+    stack: ['React', 'Express.js', 'Drizzle ORM', 'PostgreSQL', 'Chrome Extensions', 'OpenAI API', 'Meta API'],
     link: dealerPilotPageUrl,
     logo: '/projects/dealerpilot-ai-operator/logo.png',
     image: undefined,
