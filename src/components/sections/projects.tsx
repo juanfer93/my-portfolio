@@ -227,7 +227,7 @@ const Projects = () => {
 
   return (
     <section id="projects" className="w-full py-20 md:py-28 lg:py-32 bg-secondary/10">
-      <AnimatedSection>
+      <AnimatedSection amount={0.05}>
         <div className="container px-4 md:px-6 mx-auto">
           <div className="flex flex-col items-center text-center">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Proyectos Destacados</h2>

@@ -7,11 +7,12 @@ type AnimatedSectionProps = {
   children: React.ReactNode;
   className?: string;
   onVisible?: () => void;
+  amount?: number | 'some' | 'all';
 };
 
-const AnimatedSection = ({ children, className, onVisible }: AnimatedSectionProps) => {
+const AnimatedSection = ({ children, className, onVisible, amount = 0.2 }: AnimatedSectionProps) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount });
   const onVisibleRef = useRef(onVisible);
 
   onVisibleRef.current = onVisible;
