@@ -15,7 +15,7 @@ import AnimatedSection from '../animated-section';
 
 const dealerPilotPlatformObjective = 'DealerPilot es una plataforma operativa para concesionarios independientes que sincroniza el inventario, redacta y publica vehículos automáticamente en Facebook Marketplace, mejora fotos con IA y responde a compradores en inglés y español 24/7.';
 const dealerPilotPageUrl = 'https://1987dealerpilot.com/';
-const dealerAdminPlatformObjective = 'dealerADMIN recibe mensajes de GHL mediante webhooks firmados, guarda y deduplica cada conversación, normaliza los datos, enruta el lead al dealer correcto y lo deja en una cola operativa auditable.';
+const dealerAdminPlatformObjective = 'dealerADMIN es una automatización operativa que recibe mensajes, audios, imágenes y documentos desde GHL mediante webhooks firmados. Su media-worker Python transcribe audio, extrae OCR e interpreta evidencia visual para devolverla a la conversación; después normaliza los datos, enruta el lead al dealer correcto y lo deja en una cola auditable.';
 const dealerAdminPageUrl = 'https://dealeradmin-api-eight.vercel.app/';
 
 const automationSlides = [
@@ -143,7 +143,7 @@ const dealerAdminLinkSlides = [
   {
     image: '',
     title: 'Cómo funciona dealerADMIN',
-    description: 'Una vista general del flujo: GHL captura la respuesta del cliente, dealerADMIN procesa el evento y el operador recibe la siguiente acción clara para entregar el lead correcto.',
+    description: 'Una vista general de la automatización: GHL captura la conversación, dealerADMIN incorpora texto, audio e imagen como evidencia, y el operador recibe la siguiente acción clara para entregar el lead correcto.',
     externalUrl: dealerAdminPageUrl,
   }
 ];
@@ -151,11 +151,11 @@ const dealerAdminLinkSlides = [
 const projectsData = [
   {
     title: 'dealerADMIN',
-    description: 'Automatización operativa para capturar, cualificar y enrutar leads desde GoHighLevel hasta la cola del dealer correcto, con memoria en base de datos, deduplicación y trazabilidad.',
+    description: 'Automatización operativa para capturar, entender y enrutar conversaciones de GoHighLevel —incluidos texto, audio, imágenes y documentos— hasta la cola del dealer correcto, con memoria, deduplicación y trazabilidad.',
     platformObjective: dealerAdminPlatformObjective,
     role: 'Lead Routing & Operations Platform',
-    roleSubtitle: 'Una operación auditable para que cada conversación llegue al dealer correcto con la siguiente acción clara.',
-    stack: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeScript', 'HMAC Webhooks'],
+    roleSubtitle: 'Una automatización auditable que convierte cada conversación en la siguiente acción clara para el dealer.',
+    stack: ['Next.js', 'NestJS', 'Python', 'PostgreSQL', 'Docker', 'faster-whisper', 'PaddleOCR', 'Transformers', 'HMAC Webhooks'],
     link: dealerAdminPageUrl,
     logo: '/projects/dealeradmin/logo.svg',
     hasCarousel: true,
@@ -582,7 +582,7 @@ const Projects = () => {
                             Detalles del flujo
                           </h5>
                           <p className="text-xs text-muted-foreground leading-relaxed">
-                            Esta automatización se ejecuta en tiempo real dentro de GoHighLevel, conectando múltiples puntos de contacto y optimizando la conversión de leads mediante IA.
+                            Esta automatización se ejecuta en tiempo real alrededor de GoHighLevel, conectando mensajes y adjuntos con una cola operativa auditable para que cada lead llegue al dealer correcto.
                           </p>
                         </div>
                       )}
